@@ -1,7 +1,10 @@
-name: docs-template
-title: Neo4j Documentation template
-version: '1.0'
-# display_version: '1.0-preview'
+name: neo4j-mcp
+title: Neo4j MCP
+version: '1'
 start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/content-nav.adoc
+asciidoc:
+  attributes:
+    page-add-notes-module: ROOT
+    page-add-notes-tags: note

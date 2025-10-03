@@ -1,0 +1,28 @@
+[[usage]]
+= Usage
+
+== Tools
+
+Provided tools:
+
+[cols="3*", options="header"]
+|===
+| Tool         | Purpose                                               | Notes
+| `get-schema` | Introspect labels, relationship types, property keys. | Read-only. Provide valuable context to the client LLMs.                                   
+| `run-cypher` | Execute arbitrary Cypher (read/write).                | **Caution:** LLM-generated queries can cause harm. Use only in development environments.
+|===
+
+
+## Examples for natural language prompts
+
+Here are some example prompts you can try in Copilot or any other MCP client:
+
+- "What does my Neo4j instance contain? List all node labels, relationship types, and property keys."
+- "Find all Person nodes and their relationships in my Neo4j instance."
+- "Create a new User node with a name 'John' in my Neo4j instance."
+
+
+## Security considerations
+
+- Use a restricted Neo4j user for exploration.
+- Review the generated Cypher queries before executing them in production databases.

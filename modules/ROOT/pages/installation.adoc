@@ -1,0 +1,101 @@
+[[installation]]
+= Installation
+:description: This section describes the installation of Neo4j MCP.
+
+Visit the release page for Neo4j MCP: https://github.com/neo4j/mcp/releases
+
+. Download the archive for your operating system.
+. Extract and place `neo4j-mcp` in a directory present in your PATH variables.
+
+Mac and Linux:
+
+[source, bash]
+----
+chmod +x neo4j-mcp
+sudo mv neo4j-mcp /usr/local/bin/
+----
+
+Windows (PowerShell or cmd):
+
+[source, shell]
+----
+move neo4j-mcp.exe C:\Windows\System32
+----
+
+Verify the neo4j-mcp installation:
+
+[source, bash]
+----
+neo4j-mcp -v
+----
+
+This should print the installed version.
+
+
+== Configure VSCode (MCP)
+
+Create / edit `mcp.json`:
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USERNAME": "neo4j",
+        "NEO4J_PASSWORD": "password",
+        "NEO4J_DATABASE": "neo4j"
+      }
+    }
+  }
+}
+----
+
+Restart VSCode.
+Open Copilot Chat and make sure that the prompt "List Neo4j MCP tools" returns expected results.
+
+Also refer to link:https://code.visualstudio.com/docs/copilot/customization/mcp-servers[VSCode Copilot docs].
+
+
+== Configure Claude desktop
+
+Install link:https://claude.ai/download[Claude for desktop].
+
+Configure Claude for desktop for all MCP servers you want to use.
+Open your Claude for desktop App configuration in a text editor.
+Find the files at:
+
+- (MacOS/Linux) `~/Library/Application Support/Claude/claude_desktop_config.json`
+- (Windows) `$env:AppData\Claude\claude_desktop_config.json`
+
+Make sure to create the file if it doesn't exist.
+
+Add the `neo4j-mcp` MCP in the `mcpServers` key:
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-mcp": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "args": [],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USERNAME": "neo4j",
+        "NEO4J_PASSWORD": "password",
+        "NEO4J_DATABASE": "neo4j"
+      }
+    }
+  }
+}
+----
+
+Notes:
+
+- Adjust the `env` variables for your setup (defaults shown above).
+- Neo4j Desktop default URI: `bolt://localhost:7687`.
+- Aura: use the connection string from the Aura console.

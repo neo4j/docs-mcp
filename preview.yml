@@ -1,7 +1,7 @@
 site:
-  title: Neo4j Docs Template
+  title: Neo4j MCP
   url: https://neo4j.com/docs
-  start_page: docs-template:ROOT:index.adoc
+  start_page: neo4j-mcp:ROOT:index.adoc
 
 content:
   sources:
@@ -32,6 +32,7 @@ asciidoc:
   - "@neo4j-documentation/remote-include"
   - "@neo4j-documentation/macros"
   - "@neo4j-antora/mark-terms"
+  
   attributes:
     # page-attributes are used by the ui-bundle and by extensions
     page-theme: docs
