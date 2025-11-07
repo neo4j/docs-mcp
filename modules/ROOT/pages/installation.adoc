@@ -101,4 +101,4 @@ Notes:
 - Adjust the `env` variables for your setup (defaults shown above).
 - `NEO4J_READ_ONLY` is optional. Set to `true` to disable write tools.
 - Neo4j Desktop default URI: `bolt://localhost:7687`.
-- For Aura, use the connection string from the Aura console.
+- For Aura, use the connection string from the Aura Console.
