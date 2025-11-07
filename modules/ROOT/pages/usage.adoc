@@ -5,15 +5,21 @@
 
 Provided tools:
 
-[cols="3*", options="header"]
+[cols="4*", options="header"]
 |===
-| Tool         | Purpose                                               | Notes
-| `get-schema` | Introspect labels, relationship types, property keys. | Read-only. Provide valuable context to the client LLMs.                                   
-| `run-cypher` | Execute arbitrary Cypher (read/write).                | **Caution:** LLM-generated queries can cause harm. Use only in development environments.
+| Tool                 | ReadOnly | Purpose                                        | Notes
+| `get-schema`         | Yes      | Introspect labels, relationship types, property keys | Provide valuable context to the client LLMs.
+| `read-cypher`        | Yes      | Execute arbitrary Cypher (read mode)           | Rejects writes, schema/admin operations, and PROFILE queries.
+| `write-cypher`       | No       | Execute arbitrary Cypher (write mode)          | Caution: LLM-generated queries can cause harm. Use only in development environments. Disabled if `NEO4J_READ_ONLY=true`.
+| `list-gds-procedures` | Yes     | List GDS procedures available in the instance  | Help the client LLM to have better visibility on available GDS procedures.
 |===
 
+=== Readonly mode
 
-## Examples for natural language prompts
+Enable readonly mode by setting the `NEO4J_READ_ONLY` environment variable to `true`.
+When enabled, write tools (such as `write-cypher`) are not exposed to clients.
+
+== Examples for natural language prompts
 
 Here are some example prompts you can try in Copilot or any other MCP client:
 
@@ -21,8 +27,7 @@ Here are some example prompts you can try in Copilot or any other MCP client:
 - "Find all Person nodes and their relationships in my Neo4j instance."
 - "Create a new User node with a name 'John' in my Neo4j instance."
 
-
-## Security considerations
+== Security considerations
 
 - Use a restricted Neo4j user for exploration.
 - Review the generated Cypher queries before executing them in production databases.
