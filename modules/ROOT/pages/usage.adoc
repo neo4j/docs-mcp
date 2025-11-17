@@ -31,3 +31,11 @@ Here are some example prompts you can try in Copilot or any other MCP client:
 
 - Use a restricted Neo4j user for exploration.
 - Review the generated Cypher queries before executing them in production databases.
+
+== Telemetry
+
+By default, `neo4j-mcp` collects anonymous usage data to help us improve the product.
+This includes information like the tools being used, the operating system, and CPU architecture.
+We do not collect any personal or sensitive information.
+
+To disable telemetry, set the `NEO4J_TELEMETRY` environment variable to `"false"`.
