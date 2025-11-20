@@ -1,6 +1,6 @@
 # tag::note[]
 [NOTE]
 ====
-The Model Context Protocol (MCP) server for Neo4j. is in active development and not yet suitable for production.
+The Model Context Protocol (MCP) server for Neo4j is in active development and not yet suitable for production.
 ====
 # end::note[]
