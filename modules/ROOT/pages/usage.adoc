@@ -52,6 +52,8 @@ The following command-line flags are available and take precedence over environm
 | `--neo4j-username`    | Override `NEO4J_USERNAME` environment variable
 | `--neo4j-password`    | Override `NEO4J_PASSWORD` environment variable
 | `--neo4j-database`    | Override `NEO4J_DATABASE` environment variable
+| `--neo4j-read-only`   | Override `NEO4J_READ_ONLY` environment variable
+| `--neo4j-telemetry`   | Override `NEO4J_TELEMETRY` environment variable
 | `-v`, `--version`     | Display version information
 |===
 
