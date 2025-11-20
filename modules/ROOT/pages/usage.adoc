@@ -57,7 +57,7 @@ The following command-line flags are available and take precedence over environm
 | `-v`, `--version`     | Display version information
 |===
 
-*Configuration Precedence:* Command-line flags take priority over environment variables.
+Command-line flags take precedence over environment variables.
 
 *Note:* The three required connection parameters (URI, username, and password) must be provided via environment variables, command-line flags, or a combination of both. There are no default values.
 
