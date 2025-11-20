@@ -148,4 +148,4 @@ Notes:
 - `NEO4J_READ_ONLY` is optional. Set to `true` to disable write tools.
 - Neo4j Desktop example URI: `bolt://localhost:7687`.
 - For Aura, use the connection string from the Aura Console.
-- All connection parameters (URI, username, password, database) are required and have no default values.
+- All connection parameters (URI, username, password) are required and have no default values.
