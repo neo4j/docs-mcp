@@ -124,7 +124,7 @@ Two output formats are available:
 
 Set the log format using the `NEO4J_LOG_FORMAT` environment variable.
 
-=== Security Features
+=== Security features
 
 The logging system automatically redacts sensitive information including:
 
