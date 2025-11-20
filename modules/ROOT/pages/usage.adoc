@@ -99,7 +99,7 @@ neo4j-mcp --neo4j-username admin \
 `neo4j-mcp` implements a structured logging system using the log levels defined in the MCP specification.
 Logging can be configured using environment variables to control the verbosity and output format.
 
-=== Log Levels
+=== Log levels
 
 The following log levels are supported, as defined by the MCP specification (from most to least verbose):
 
