@@ -112,7 +112,8 @@ The following log levels are supported, as defined by the MCP specification (fro
 - `alert` - Action must be taken immediately
 - `emergency` - System is unusable
 
-Set the log level using the `NEO4J_LOG_LEVEL` environment variable. The log level is set at startup and remains fixed for the lifetime of the server process.
+Set the log level using the `NEO4J_LOG_LEVEL` environment variable.
+The log level is set at startup and remains fixed for the lifetime of the server process.
 
 === Log Formats
 
