@@ -1,7 +1,7 @@
 site:
   title: Neo4j MCP
   url: https://neo4j.com/docs
-  start_page: neo4j-mcp:ROOT:index.adoc
+  start_page: mcp:ROOT:index.adoc
 
 content:
   sources:

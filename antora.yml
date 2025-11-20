@@ -1,4 +1,4 @@
-name: neo4j-mcp
+name: mcp
 title: Neo4j MCP
 version: '1'
 start_page: ROOT:index.adoc
