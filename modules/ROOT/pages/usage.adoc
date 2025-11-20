@@ -19,6 +19,159 @@ Provided tools:
 Enable readonly mode by setting the `NEO4J_READ_ONLY` environment variable to `true`.
 When enabled, write tools (such as `write-cypher`) are not exposed to clients.
 
+== Configuration
+
+`neo4j-mcp` requires explicit configuration to connect to your Neo4j instance.
+Configuration can be provided through environment variables or command-line flags.
+
+=== Environment variables
+
+The following environment variables are used for configuration:
+
+[cols="3*", options="header"]
+|===
+| Variable             | Description | Default
+| `NEO4J_URI`          | Connection URI (e.g., `bolt://localhost:7687`) | _Required_
+| `NEO4J_USERNAME`     | Neo4j username | _Required_
+| `NEO4J_PASSWORD`     | Neo4j password | _Required_
+| `NEO4J_DATABASE`     | Database name | `neo4j`
+| `NEO4J_READ_ONLY`    | Set to `true` to disable write tools | `false`
+| `NEO4J_TELEMETRY`    | Set to `false` to disable telemetry | `true`
+| `NEO4J_LOG_LEVEL`    | Log level (see <<Logging>> section) | `info`
+| `NEO4J_LOG_FORMAT`   | Log output format: `text` or `json` | `text`
+|===
+
+=== Command-line flags
+
+The following command-line flags are available and take precedence over environment variables:
+
+[cols="2*", options="header"]
+|===
+| Flag                  | Description
+| `--neo4j-uri`         | Override `NEO4J_URI` environment variable
+| `--neo4j-username`    | Override `NEO4J_USERNAME` environment variable
+| `--neo4j-password`    | Override `NEO4J_PASSWORD` environment variable
+| `--neo4j-database`    | Override `NEO4J_DATABASE` environment variable
+| `--neo4j-read-only`   | Override `NEO4J_READ_ONLY` environment variable
+| `--neo4j-telemetry`   | Override `NEO4J_TELEMETRY` environment variable
+| `-v`, `--version`     | Display version information
+|===
+
+Command-line flags take precedence over environment variables.
+
+[NOTE]
+====
+The three required connection parameters (URI, username, and password) must be provided via environment variables, command-line flags, or a combination of both.
+There are no default values.
+====
+
+=== Usage examples
+
+Running with environment variables only (as configured in MCP client):
+
+[source, bash]
+----
+neo4j-mcp
+----
+
+Running with command-line flags:
+
+[source, bash]
+----
+neo4j-mcp --neo4j-uri bolt://localhost:7687 \
+  --neo4j-username neo4j \
+  --neo4j-password mypassword \
+  --neo4j-database neo4j
+----
+
+Mixing environment variables and flags (flags override env vars):
+
+[source, bash]
+----
+# Uses NEO4J_URI from environment, but overrides other parameters
+neo4j-mcp --neo4j-username admin \
+  --neo4j-password adminpass \
+  --neo4j-database production
+----
+
+== Logging
+
+`neo4j-mcp` implements a structured logging system using the log levels defined in the MCP specification.
+Logging can be configured using environment variables to control the verbosity and output format.
+
+=== Log levels
+
+The following log levels are supported, as defined by the MCP specification (from most to least verbose):
+
+- `debug` - Detailed diagnostic information
+- `info` - General informational messages (default)
+- `notice` - Normal but significant events
+- `warning` - Warning messages
+- `error` - Error messages
+- `critical` - Critical conditions
+- `alert` - Action must be taken immediately
+- `emergency` - System is unusable
+
+Set the log level using the `NEO4J_LOG_LEVEL` environment variable.
+The log level is set at startup and remains fixed for the lifetime of the server process.
+
+=== Log formats
+
+Two output formats are available:
+
+- `text` (default) - Human-readable text format
+- `json` - Structured JSON format for log parsing and analysis
+
+Set the log format using the `NEO4J_LOG_FORMAT` environment variable.
+
+=== Security features
+
+The logging system automatically redacts sensitive information including:
+
+- Passwords
+- Authentication tokens
+- Connection credentials
+
+This ensures that sensitive data does not leak into log files.
+
+=== Configuration examples
+
+Enable debug logging with text output:
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-mcp": {
+      "command": "neo4j-mcp",
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_LOG_LEVEL": "debug",
+        "NEO4J_LOG_FORMAT": "text"
+      }
+    }
+  }
+}
+----
+
+Enable JSON logging for automated parsing:
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-mcp": {
+      "command": "neo4j-mcp",
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_LOG_LEVEL": "info",
+        "NEO4J_LOG_FORMAT": "json"
+      }
+    }
+  }
+}
+----
+
 == Examples for natural language prompts
 
 Here are some example prompts you can try in Copilot or any other MCP client:

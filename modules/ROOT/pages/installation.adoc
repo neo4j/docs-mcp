@@ -55,6 +55,31 @@ Create / edit `mcp.json`:
 }
 ----
 
+Set environment variables in the `env` object as shown above.
+
+Alternatively, you can use command-line flags in the `args` array to override environment variables:
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "args": [
+        "--neo4j-uri", "bolt://localhost:7687",
+        "--neo4j-username", "neo4j",
+        "--neo4j-password", "password",
+        "--neo4j-database", "neo4j"
+      ],
+      "env": {
+        "NEO4J_READ_ONLY": "true"
+      }
+    }
+  }
+}
+----
+
 Restart VSCode.
 Open Copilot Chat and make sure that the prompt "List Neo4j MCP tools" returns expected results.
 
@@ -96,9 +121,35 @@ Add the `neo4j-mcp` MCP in the `mcpServers` key:
 }
 ----
 
+Set environment variables in the `env` object as shown above.
+
+Alternatively, you can use command-line flags in the `args` array:
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-mcp": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "args": [
+        "--neo4j-uri", "bolt://localhost:7687",
+        "--neo4j-username", "neo4j",
+        "--neo4j-password", "password",
+        "--neo4j-database", "neo4j"
+      ],
+      "env": {
+        "NEO4J_READ_ONLY": "true"
+      }
+    }
+  }
+}
+----
+
 Notes:
 
-- Adjust the `env` variables for your setup (defaults shown above).
+- Command-line flags (in `args`) take precedence over environment variables (in `env`).
 - `NEO4J_READ_ONLY` is optional. Set to `true` to disable write tools.
-- Neo4j Desktop default URI: `bolt://localhost:7687`.
+- Neo4j Desktop example URI: `bolt://localhost:7687`.
 - For Aura, use the connection string from the Aura Console.
+- All connection parameters (URI, username, password) are required and have no default values.
