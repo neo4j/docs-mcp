@@ -134,7 +134,7 @@ The logging system automatically redacts sensitive information including:
 
 This ensures that sensitive data does not leak into log files.
 
-=== Configuration Examples
+=== Configuration examples
 
 Enable debug logging with text output:
 
