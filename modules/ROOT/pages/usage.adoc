@@ -41,7 +41,7 @@ The following environment variables are used for configuration:
 | `NEO4J_LOG_FORMAT`   | Log output format: `text` or `json` | `text`
 |===
 
-=== Command-Line Flags
+=== Command-line flags
 
 The following command-line flags are available and take precedence over environment variables:
 
