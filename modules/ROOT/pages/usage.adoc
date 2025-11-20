@@ -34,7 +34,7 @@ The following environment variables are used for configuration:
 | `NEO4J_URI`          | Connection URI (e.g., `bolt://localhost:7687`) | _Required_
 | `NEO4J_USERNAME`     | Neo4j username | _Required_
 | `NEO4J_PASSWORD`     | Neo4j password | _Required_
-| `NEO4J_DATABASE`     | Database name (e.g., `neo4j`) | _Required_
+| `NEO4J_DATABASE`     | Database name | `neo4j`
 | `NEO4J_READ_ONLY`    | Set to `true` to disable write tools | `false`
 | `NEO4J_TELEMETRY`    | Set to `false` to disable telemetry | `true`
 | `NEO4J_LOG_LEVEL`    | Log level (see <<Logging>> section) | `info`
