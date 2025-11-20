@@ -19,6 +19,73 @@ Provided tools:
 Enable readonly mode by setting the `NEO4J_READ_ONLY` environment variable to `true`.
 When enabled, write tools (such as `write-cypher`) are not exposed to clients.
 
+== Configuration
+
+`neo4j-mcp` requires explicit configuration to connect to your Neo4j instance.
+Configuration can be provided through environment variables or command-line flags.
+
+=== Environment Variables
+
+The following environment variables are used for configuration:
+
+[cols="2*", options="header"]
+|===
+| Variable             | Description
+| `NEO4J_URI`          | Connection URI (e.g., `bolt://localhost:7687`)
+| `NEO4J_USERNAME`     | Neo4j username
+| `NEO4J_PASSWORD`     | Neo4j password
+| `NEO4J_DATABASE`     | Database name (e.g., `neo4j`)
+| `NEO4J_READ_ONLY`    | Optional. Set to `true` to disable write tools
+| `NEO4J_TELEMETRY`    | Optional. Set to `false` to disable telemetry
+|===
+
+=== Command-Line Flags
+
+The following command-line flags are available and take precedence over environment variables:
+
+[cols="2*", options="header"]
+|===
+| Flag                  | Description
+| `--neo4j-uri`         | Override `NEO4J_URI` environment variable
+| `--neo4j-username`    | Override `NEO4J_USERNAME` environment variable
+| `--neo4j-password`    | Override `NEO4J_PASSWORD` environment variable
+| `--neo4j-database`    | Override `NEO4J_DATABASE` environment variable
+| `-v`, `--version`     | Display version information
+|===
+
+*Configuration Precedence:* Command-line flags take priority over environment variables.
+
+*Note:* At least one method must be used to provide the required connection parameters (URI, username, password, and database). There are no default values.
+
+=== Usage Examples
+
+Running with environment variables only (as configured in MCP client):
+
+[source, bash]
+----
+neo4j-mcp
+----
+
+Running with command-line flags:
+
+[source, bash]
+----
+neo4j-mcp --neo4j-uri bolt://localhost:7687 \
+  --neo4j-username neo4j \
+  --neo4j-password mypassword \
+  --neo4j-database neo4j
+----
+
+Mixing environment variables and flags (flags override env vars):
+
+[source, bash]
+----
+# Uses NEO4J_URI from environment, but overrides other parameters
+neo4j-mcp --neo4j-username admin \
+  --neo4j-password adminpass \
+  --neo4j-database production
+----
+
 == Examples for natural language prompts
 
 Here are some example prompts you can try in Copilot or any other MCP client:
