@@ -55,6 +55,8 @@ Create / edit `mcp.json`:
 }
 ----
 
+Set environment variables in the `env` object as shown above.
+
 Alternatively, you can use command-line flags in the `args` array to override environment variables:
 
 [source, json]
@@ -118,6 +120,8 @@ Add the `neo4j-mcp` MCP in the `mcpServers` key:
   }
 }
 ----
+
+Set environment variables in the `env` object as shown above.
 
 Alternatively, you can use command-line flags in the `args` array:
 
