@@ -24,7 +24,7 @@ When enabled, write tools (such as `write-cypher`) are not exposed to clients.
 `neo4j-mcp` requires explicit configuration to connect to your Neo4j instance.
 Configuration can be provided through environment variables or command-line flags.
 
-=== Environment Variables
+=== Environment variables
 
 The following environment variables are used for configuration:
 
@@ -65,7 +65,7 @@ The three required connection parameters (URI, username, and password) must be p
 There are no default values.
 ====
 
-=== Usage Examples
+=== Usage examples
 
 Running with environment variables only (as configured in MCP client):
 
