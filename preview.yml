@@ -32,6 +32,7 @@ asciidoc:
   - "@neo4j-documentation/remote-include"
   - "@neo4j-documentation/macros"
   - "@neo4j-antora/mark-terms"
+  - "@neo4j-antora/antora-add-notes"
   
   attributes:
     # page-attributes are used by the ui-bundle and by extensions
@@ -59,3 +60,5 @@ asciidoc:
     neo4j-base-uri: https://neo4j.com
     neo4j-docs-base-uri: '{neo4j-base-uri}/docs'
     common-license-page-uri: '{neo4j-docs-base-uri}/license'
+    page-add-notes-module: ROOT
+    page-add-notes-tags: note

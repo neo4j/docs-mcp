@@ -2,8 +2,6 @@
 = Neo4j MCP
 :description: This section describes Neo4j MCP.
 
-The Model Context Protocol (MCP) server for Neo4j. is in active development and not yet suitable for production.
-
 == Prerequisites
 
 * A running Neo4j database instance. Options include Aura, neo4j-desktop or self-managed.
