@@ -61,4 +61,3 @@ asciidoc:
     neo4j-docs-base-uri: '{neo4j-base-uri}/docs'
     common-license-page-uri: '{neo4j-docs-base-uri}/license'
     page-add-notes-module: ROOT
-    page-add-notes-tags: note
