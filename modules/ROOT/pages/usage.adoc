@@ -30,15 +30,16 @@ The following environment variables are used for configuration:
 
 [cols="3*", options="header"]
 |===
-| Variable             | Description | Default
-| `NEO4J_URI`          | Connection URI (e.g., `bolt://localhost:7687`) | _Required_
-| `NEO4J_USERNAME`     | Neo4j username | _Required_
-| `NEO4J_PASSWORD`     | Neo4j password | _Required_
-| `NEO4J_DATABASE`     | Database name | `neo4j`
-| `NEO4J_READ_ONLY`    | Set to `true` to disable write tools | `false`
-| `NEO4J_TELEMETRY`    | Set to `false` to disable telemetry | `true`
-| `NEO4J_LOG_LEVEL`    | Log level (see <<Logging>> section) | `info`
-| `NEO4J_LOG_FORMAT`   | Log output format: `text` or `json` | `text`
+| Variable                    | Description | Default
+| `NEO4J_URI`                 | Connection URI (e.g., `bolt://localhost:7687`) | _Required_
+| `NEO4J_USERNAME`            | Neo4j username | _Required_
+| `NEO4J_PASSWORD`            | Neo4j password | _Required_
+| `NEO4J_DATABASE`            | Database name | `neo4j`
+| `NEO4J_READ_ONLY`           | Set to `true` to disable write tools | `false`
+| `NEO4J_TELEMETRY`           | Set to `false` to disable telemetry | `true`
+| `NEO4J_LOG_LEVEL`           | Log level (see <<Logging>> section) | `info`
+| `NEO4J_LOG_FORMAT`          | Log output format: `text` or `json` | `text`
+| `NEO4J_SCHEMA_SAMPLE_SIZE`  | Number of nodes to sample for schema inference | 100
 |===
 
 === Command-line flags
@@ -47,14 +48,15 @@ The following command-line flags are available and take precedence over environm
 
 [cols="2*", options="header"]
 |===
-| Flag                  | Description
-| `--neo4j-uri`         | Override `NEO4J_URI` environment variable
-| `--neo4j-username`    | Override `NEO4J_USERNAME` environment variable
-| `--neo4j-password`    | Override `NEO4J_PASSWORD` environment variable
-| `--neo4j-database`    | Override `NEO4J_DATABASE` environment variable
-| `--neo4j-read-only`   | Override `NEO4J_READ_ONLY` environment variable
-| `--neo4j-telemetry`   | Override `NEO4J_TELEMETRY` environment variable
-| `-v`, `--version`     | Display version information
+| Flag                          | Description
+| `--neo4j-uri`                 | Override `NEO4J_URI` environment variable
+| `--neo4j-username`            | Override `NEO4J_USERNAME` environment variable
+| `--neo4j-password`            | Override `NEO4J_PASSWORD` environment variable
+| `--neo4j-database`            | Override `NEO4J_DATABASE` environment variable
+| `--neo4j-read-only`           | Override `NEO4J_READ_ONLY` environment variable
+| `--neo4j-telemetry`           | Override `NEO4J_TELEMETRY` environment variable
+| `--neo4j-schema-sample-size`  | Override `NEO4J_SCHEMA_SAMPLE_SIZE` environment variable
+| `-v`, `--version`             | Display version information
 |===
 
 Command-line flags take precedence over environment variables.
