@@ -34,6 +34,8 @@ This should print the installed version.
 
 == Configure VSCode (MCP)
 
+=== STDIO mode configuration
+
 Create / edit `mcp.json`:
 
 [source, json]
@@ -80,6 +82,58 @@ Alternatively, you can use command-line flags in the `args` array to override en
 }
 ----
 
+=== HTTP mode configuration
+
+For HTTP mode with CORS support:
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j-http": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_TRANSPORT": "http",
+        "NEO4J_MCP_HTTP_HOST": "127.0.0.1",
+        "NEO4J_MCP_HTTP_PORT": "8080",
+        "NEO4J_MCP_HTTP_ALLOWED_ORIGINS": "http://localhost:3000,https://app.example.com"
+      }
+    }
+  }
+}
+----
+
+For HTTP mode with TLS enabled:
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j-https": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_TRANSPORT": "http",
+        "NEO4J_MCP_HTTP_HOST": "0.0.0.0",
+        "NEO4J_MCP_HTTP_PORT": "8443",
+        "NEO4J_MCP_HTTP_TLS_ENABLED": "true",
+        "NEO4J_MCP_HTTP_TLS_CERT_FILE": "/path/to/cert.pem",
+        "NEO4J_MCP_HTTP_TLS_KEY_FILE": "/path/to/key.pem"
+      }
+    }
+  }
+}
+----
+
+[NOTE]
+====
+In HTTP mode, credentials are provided per-request via Basic Authentication headers.
+Do NOT set `NEO4J_USERNAME` or `NEO4J_PASSWORD` environment variables.
+====
+
 Restart VSCode.
 Open Copilot Chat and make sure that the prompt "List Neo4j MCP tools" returns expected results.
 
@@ -98,6 +152,8 @@ Find the files at:
 - (Windows) `$env:AppData\Claude\claude_desktop_config.json`
 
 Make sure to create the file if it doesn't exist.
+
+=== STDIO mode configuration
 
 Add the `neo4j-mcp` MCP in the `mcpServers` key:
 
@@ -146,10 +202,59 @@ Alternatively, you can use command-line flags in the `args` array:
 }
 ----
 
+=== HTTP mode configuration
+
+For HTTP mode with CORS support:
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-mcp-http": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "args": [],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_TRANSPORT": "http",
+        "NEO4J_MCP_HTTP_HOST": "127.0.0.1",
+        "NEO4J_MCP_HTTP_PORT": "8080",
+        "NEO4J_MCP_HTTP_ALLOWED_ORIGINS": "http://localhost:3000,https://app.example.com"
+      }
+    }
+  }
+}
+----
+
+For HTTP mode with TLS enabled:
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-mcp-https": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "args": [],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_TRANSPORT": "http",
+        "NEO4J_MCP_HTTP_HOST": "0.0.0.0",
+        "NEO4J_MCP_HTTP_PORT": "8443",
+        "NEO4J_MCP_HTTP_TLS_ENABLED": "true",
+        "NEO4J_MCP_HTTP_TLS_CERT_FILE": "/path/to/cert.pem",
+        "NEO4J_MCP_HTTP_TLS_KEY_FILE": "/path/to/key.pem"
+      }
+    }
+  }
+}
+----
+
 Notes:
 
 - Command-line flags (in `args`) take precedence over environment variables (in `env`).
 - `NEO4J_READ_ONLY` is optional. Set to `true` to disable write tools.
 - Neo4j Desktop example URI: `bolt://localhost:7687`.
 - For Aura, use the connection string from the Aura Console.
-- All connection parameters (URI, username, password) are required and have no default values.
+- **STDIO mode**: All connection parameters (URI, username, password) are required and have no default values.
+- **HTTP mode**: Only the URI is required. Credentials are provided per-request via Basic Authentication headers. Do NOT set `NEO4J_USERNAME` or `NEO4J_PASSWORD` in HTTP mode.
