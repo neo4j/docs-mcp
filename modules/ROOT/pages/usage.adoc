@@ -19,11 +19,13 @@ Provided tools:
 Enable readonly mode by setting the `NEO4J_READ_ONLY` environment variable to `true`.
 When enabled, write tools (such as `write-cypher`) are not exposed to clients.
 
+[[configuration]]
 == Configuration
 
 `neo4j-mcp` requires explicit configuration to connect to your Neo4j instance.
 Configuration can be provided through environment variables or command-line flags.
 
+[[transport-modes]]
 === Transport modes
 
 The server supports two transport modes:
@@ -135,6 +137,35 @@ Command-line flags take precedence over environment variables.
 
 === Usage examples
 
+==== Quick start (shell)
+
+Minimal snippets to run the server.
+
+STDIO mode:
+
+[source, bash]
+----
+# STDIO mode
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_USERNAME="neo4j"
+export NEO4J_PASSWORD="password"
+# Optional: read-only mode
+export NEO4J_READ_ONLY="true"
+neo4j-mcp
+----
+
+HTTP mode:
+
+[source, bash]
+----
+# HTTP mode (no username/password env vars)
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_MCP_TRANSPORT="http"
+export NEO4J_MCP_HTTP_HOST="127.0.0.1"
+export NEO4J_MCP_HTTP_PORT="8080"
+neo4j-mcp
+----
+
 ==== STDIO mode examples
 
 Running with environment variables only (as configured in MCP client):
@@ -172,7 +203,7 @@ Running HTTP mode with environment variables:
 ----
 export NEO4J_URI="bolt://localhost:7687"
 export NEO4J_MCP_TRANSPORT="http"
-export NEO4J_MCP_HTTP_HOST="0.0.0.0"
+export NEO4J_MCP_HTTP_HOST="127.0.0.1"
 export NEO4J_MCP_HTTP_PORT="8080"
 neo4j-mcp
 ----
