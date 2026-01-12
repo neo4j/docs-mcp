@@ -19,10 +19,31 @@ Provided tools:
 Enable readonly mode by setting the `NEO4J_READ_ONLY` environment variable to `true`.
 When enabled, write tools (such as `write-cypher`) are not exposed to clients.
 
+[[configuration]]
 == Configuration
 
 `neo4j-mcp` requires explicit configuration to connect to your Neo4j instance.
 Configuration can be provided through environment variables or command-line flags.
+
+[[transport-modes]]
+=== Transport modes
+
+The server supports two transport modes:
+
+- **STDIO** (default): Traditional standard input/output mode for desktop clients
+- **HTTP**: Web-based mode for multi-tenant scenarios and web clients
+
+Set the transport mode using the `NEO4J_MCP_TRANSPORT` environment variable or `--neo4j-transport-mode` flag.
+
+==== STDIO mode
+
+In STDIO mode, credentials are provided via environment variables (`NEO4J_USERNAME` and `NEO4J_PASSWORD`).
+The server validates connectivity and APOC availability at startup.
+
+==== HTTP mode
+
+In HTTP mode, the server operates statelessly and accepts per-request Basic Authentication credentials.
+Do NOT set `NEO4J_USERNAME` or `NEO4J_PASSWORD` environment variables in HTTP mode, as credentials come from per-request Basic Auth headers.
 
 === Environment variables
 
@@ -30,44 +51,122 @@ The following environment variables are used for configuration:
 
 [cols="3*", options="header"]
 |===
-| Variable                    | Description | Default
-| `NEO4J_URI`                 | Connection URI (e.g., `bolt://localhost:7687`) | _Required_
-| `NEO4J_USERNAME`            | Neo4j username | _Required_
-| `NEO4J_PASSWORD`            | Neo4j password | _Required_
-| `NEO4J_DATABASE`            | Database name | `neo4j`
-| `NEO4J_READ_ONLY`           | Set to `true` to disable write tools | `false`
-| `NEO4J_TELEMETRY`           | Set to `false` to disable telemetry | `true`
-| `NEO4J_LOG_LEVEL`           | Log level (see <<Logging>> section) | `info`
-| `NEO4J_LOG_FORMAT`          | Log output format: `text` or `json` | `text`
+| Variable             | Description | Default
+| `NEO4J_URI`          | Connection URI (e.g., `bolt://localhost:7687`) | _Required_
+| `NEO4J_USERNAME`     | Neo4j username (STDIO mode only) | _Required for STDIO_
+| `NEO4J_PASSWORD`     | Neo4j password (STDIO mode only) | _Required for STDIO_
+| `NEO4J_DATABASE`     | Database name | `neo4j`
+| `NEO4J_READ_ONLY`    | Set to `true` to disable write tools | `false`
+| `NEO4J_TELEMETRY`    | Set to `false` to disable telemetry | `true`
+| `NEO4J_LOG_LEVEL`    | Log level (see <<Logging>> section) | `info`
+| `NEO4J_LOG_FORMAT`   | Log output format: `text` or `json` | `text`
 | `NEO4J_SCHEMA_SAMPLE_SIZE`  | Number of nodes to sample for schema inference | 100
+| `NEO4J_MCP_TRANSPORT` | Transport mode: `stdio` or `http` | `stdio`
 |===
+
+==== HTTP mode configuration
+
+Additional environment variables for HTTP mode:
+
+[cols="3*", options="header"]
+|===
+| Variable             | Description | Default
+| `NEO4J_MCP_HTTP_HOST` | Server binding address | `127.0.0.1`
+| `NEO4J_MCP_HTTP_PORT` | Server listening port | `80` (or `443` with TLS)
+| `NEO4J_MCP_HTTP_ALLOWED_ORIGINS` | CORS configuration (comma-separated list, `*` for all, empty to disable) | _empty (disabled)_
+|===
+
+==== TLS/HTTPS configuration
+
+Configure TLS for secure HTTPS connections in HTTP mode:
+
+[cols="3*", options="header"]
+|===
+| Variable             | Description | Default
+| `NEO4J_MCP_HTTP_TLS_ENABLED` | Enable TLS/HTTPS | `false`
+| `NEO4J_MCP_HTTP_TLS_CERT_FILE` | Path to TLS certificate file | _Required if TLS enabled_
+| `NEO4J_MCP_HTTP_TLS_KEY_FILE` | Path to TLS private key file | _Required if TLS enabled_
+|===
+
+[NOTE]
+====
+TLS configuration enforces TLS 1.2 minimum with secure default cipher suites.
+When TLS is enabled, the default port changes from 80 to 443.
+====
 
 === Command-line flags
 
 The following command-line flags are available and take precedence over environment variables:
 
+==== General flags
+
 [cols="2*", options="header"]
 |===
-| Flag                          | Description
-| `--neo4j-uri`                 | Override `NEO4J_URI` environment variable
-| `--neo4j-username`            | Override `NEO4J_USERNAME` environment variable
-| `--neo4j-password`            | Override `NEO4J_PASSWORD` environment variable
-| `--neo4j-database`            | Override `NEO4J_DATABASE` environment variable
-| `--neo4j-read-only`           | Override `NEO4J_READ_ONLY` environment variable
-| `--neo4j-telemetry`           | Override `NEO4J_TELEMETRY` environment variable
+| Flag                  | Description
+| `--neo4j-uri`         | Override `NEO4J_URI` environment variable
+| `--neo4j-username`    | Override `NEO4J_USERNAME` environment variable (STDIO mode only)
+| `--neo4j-password`    | Override `NEO4J_PASSWORD` environment variable (STDIO mode only)
+| `--neo4j-database`    | Override `NEO4J_DATABASE` environment variable
+| `--neo4j-read-only`   | Override `NEO4J_READ_ONLY` environment variable
+| `--neo4j-telemetry`   | Override `NEO4J_TELEMETRY` environment variable
 | `--neo4j-schema-sample-size`  | Override `NEO4J_SCHEMA_SAMPLE_SIZE` environment variable
-| `-v`, `--version`             | Display version information
+| `--neo4j-transport-mode` | Override `NEO4J_MCP_TRANSPORT` (values: `stdio` or `http`)
+| `-v`, `--version`     | Display version information
+|===
+
+==== HTTP mode flags
+
+[cols="2*", options="header"]
+|===
+| Flag                  | Description
+| `--neo4j-http-host`   | Override `NEO4J_MCP_HTTP_HOST` environment variable
+| `--neo4j-http-port`   | Override `NEO4J_MCP_HTTP_PORT` environment variable
+| `--neo4j-http-tls-enabled` | Override `NEO4J_MCP_HTTP_TLS_ENABLED` environment variable
+| `--neo4j-http-tls-cert-file` | Override `NEO4J_MCP_HTTP_TLS_CERT_FILE` environment variable
+| `--neo4j-http-tls-key-file` | Override `NEO4J_MCP_HTTP_TLS_KEY_FILE` environment variable
 |===
 
 Command-line flags take precedence over environment variables.
 
 [NOTE]
 ====
-The three required connection parameters (URI, username, and password) must be provided via environment variables, command-line flags, or a combination of both.
-There are no default values.
+**STDIO mode**: The three required connection parameters (URI, username, and password) must be provided via environment variables, command-line flags, or a combination of both.
+
+**HTTP mode**: Only the URI is required via environment variables or command-line flags. Credentials are provided per-request via Basic Authentication headers.
 ====
 
 === Usage examples
+
+==== Quick start (shell)
+
+Minimal snippets to run the server.
+
+STDIO mode:
+
+[source, bash]
+----
+# STDIO mode
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_USERNAME="neo4j"
+export NEO4J_PASSWORD="password"
+# Optional: read-only mode
+export NEO4J_READ_ONLY="true"
+neo4j-mcp
+----
+
+HTTP mode:
+
+[source, bash]
+----
+# HTTP mode (no username/password env vars)
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_MCP_TRANSPORT="http"
+export NEO4J_MCP_HTTP_HOST="127.0.0.1"
+export NEO4J_MCP_HTTP_PORT="8080"
+neo4j-mcp
+----
+
+==== STDIO mode examples
 
 Running with environment variables only (as configured in MCP client):
 
@@ -95,6 +194,47 @@ neo4j-mcp --neo4j-username admin \
   --neo4j-password adminpass \
   --neo4j-database production
 ----
+
+==== HTTP mode examples
+
+Running HTTP mode with environment variables:
+
+[source, bash]
+----
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_MCP_TRANSPORT="http"
+export NEO4J_MCP_HTTP_HOST="127.0.0.1"
+export NEO4J_MCP_HTTP_PORT="8080"
+neo4j-mcp
+----
+
+Running HTTP mode with CORS enabled:
+
+[source, bash]
+----
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_MCP_TRANSPORT="http"
+export NEO4J_MCP_HTTP_ALLOWED_ORIGINS="http://localhost:3000,https://app.example.com"
+neo4j-mcp
+----
+
+Running HTTP mode with TLS enabled:
+
+[source, bash]
+----
+neo4j-mcp --neo4j-uri bolt://localhost:7687 \
+  --neo4j-transport-mode http \
+  --neo4j-http-tls-enabled true \
+  --neo4j-http-tls-cert-file /path/to/cert.pem \
+  --neo4j-http-tls-key-file /path/to/key.pem \
+  --neo4j-http-port 8443
+----
+
+[NOTE]
+====
+In HTTP mode, authentication credentials are provided per-request via Basic Authentication headers, not through environment variables or command-line flags.
+Each HTTP request must include an `Authorization` header with Base64-encoded credentials in the format `Basic <base64(username:password)>`.
+====
 
 == Logging
 

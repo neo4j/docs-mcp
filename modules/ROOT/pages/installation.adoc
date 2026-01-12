@@ -80,6 +80,11 @@ Alternatively, you can use command-line flags in the `args` array to override en
 }
 ----
 
+[NOTE]
+====
+For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes] and xref:usage.adoc#configuration[Configuration] sections.
+====
+
 Restart VSCode.
 Open Copilot Chat and make sure that the prompt "List Neo4j MCP tools" returns expected results.
 
@@ -152,4 +157,9 @@ Notes:
 - `NEO4J_READ_ONLY` is optional. Set to `true` to disable write tools.
 - Neo4j Desktop example URI: `bolt://localhost:7687`.
 - For Aura, use the connection string from the Aura Console.
-- All connection parameters (URI, username, password) are required and have no default values.
+- All connection parameters (URI, username, password) are required for STDIO mode and have no default values.
+
+[NOTE]
+====
+For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes] and xref:usage.adoc#configuration[Configuration] sections.
+====
