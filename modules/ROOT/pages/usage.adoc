@@ -33,7 +33,7 @@ The server supports two transport modes:
 - **STDIO** (default): Traditional standard input/output mode for desktop clients
 - **HTTP**: Web-based mode for multi-tenant scenarios and web clients
 
-Set the transport mode using the `NEO4J_MCP_TRANSPORT` environment variable or `--neo4j-transport-mode` flag.
+Set the transport mode using the `NEO4J_TRANSPORT_MODE` environment variable or `--neo4j-transport-mode` flag.
 
 ==== STDIO mode
 
@@ -61,7 +61,8 @@ The following environment variables are used for configuration:
 | `NEO4J_LOG_LEVEL`    | Log level (see <<Logging>> section) | `info`
 | `NEO4J_LOG_FORMAT`   | Log output format: `text` or `json` | `text`
 | `NEO4J_SCHEMA_SAMPLE_SIZE`  | Number of nodes to sample for schema inference | 100
-| `NEO4J_MCP_TRANSPORT` | Transport mode: `stdio` or `http` | `stdio`
+| `NEO4J_MCP_TRANSPORT` | This option is deprecated. Please use NEO4J_TRANSPORT_MODE |
+| `NEO4J_TRANSPORT_MODE` | Transport mode: `stdio` or `http` | `stdio`
 |===
 
 ==== HTTP mode configuration
