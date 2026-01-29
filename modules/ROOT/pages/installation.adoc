@@ -102,7 +102,7 @@ For HTTP mode, you can configure with Basic Authentication or Bearer Token authe
       "type": "http",
       "url": "http://127.0.0.1:80/mcp",
       "headers": {
-        "Authorization": "Basic bmVvNGo6cGFzc3dvcmQ="
+        "Authorization": "Basic BASE64_ENCODED_CREDENTIALS"
       }
     }
   }
@@ -229,15 +229,15 @@ For HTTP mode, you can configure with Basic Authentication or Bearer Token authe
       "type": "http",
       "url": "http://127.0.0.1:80/mcp",
       "headers": {
-        "Authorization": "Basic bmVvNGo6cGFzc3dvcmQ="
+        "Authorization": "Basic bmVvNGo6eW91cl9zZWN1cmVfcGFzc3dvcmQ="
       }
     }
   }
 }
 ----
 
-Replace `bmVvNGo6cGFzc3dvcmQ=` with your own base64-encoded credentials.
-Generate using: `echo -n "neo4j:password" | base64`
+Replace `bmVvNGo6eW91cl9zZWN1cmVfcGFzc3dvcmQ=` with your own base64-encoded credentials.
+Generate using: `echo -n "neo4j:your_secure_password" | base64`
 
 *Option 2: Bearer Token (Enterprise/Aura with SSO)*
 

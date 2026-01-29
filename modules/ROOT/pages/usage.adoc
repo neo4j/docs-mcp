@@ -25,7 +25,7 @@ When using HTTP transport mode, the Neo4j MCP server supports two authentication
 
 === Bearer Token Authentication
 
-Bearer token authentication enables seamless integration with *Neo4j Enterprise Edition* and *Neo4j Aura* environments that use SSO/OAuth/OIDC for identity management. This method is ideal for:
+Bearer token authentication enables seamless integration with *Neo4j Enterprise Edition* and *Neo4j Aura* environments that use Single Sign-On (SSO)/OAuth/OIDC for identity management. This method is ideal for:
 
 - *Enterprise deployments* with centralized identity providers (Okta, Azure AD, etc.)
 - *Neo4j Aura* databases configured with SSO
