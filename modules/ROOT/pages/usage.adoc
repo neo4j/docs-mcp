@@ -133,6 +133,7 @@ Configure TLS for secure HTTPS connections in HTTP mode:
 ====
 TLS configuration enforces TLS 1.2 minimum with secure default cipher suites.
 When TLS is enabled, the default port changes from 80 to 443.
+For detailed TLS/HTTPS setup instructions, certificate requirements, and testing procedures, see xref:tls-setup.adoc[TLS/HTTPS Setup].
 ====
 
 === Command-line flags

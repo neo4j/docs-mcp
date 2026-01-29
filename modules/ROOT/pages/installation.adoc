@@ -138,7 +138,7 @@ Replace the bearer token with your actual OAuth/SSO token from your identity pro
 
 [NOTE]
 ====
-For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes] and xref:usage.adoc#configuration[Configuration] sections.
+For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes], xref:usage.adoc#configuration[Configuration], and xref:tls-setup.adoc[TLS/HTTPS Setup] sections.
 ====
 
 Restart VSCode.
@@ -262,5 +262,5 @@ Replace the bearer token with your actual OAuth/SSO token from your identity pro
 
 [NOTE]
 ====
-For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes] and xref:usage.adoc#configuration[Configuration] sections.
+For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes], xref:usage.adoc#configuration[Configuration], and xref:tls-setup.adoc[TLS/HTTPS Setup] sections.
 ====
