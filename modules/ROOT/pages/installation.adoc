@@ -2,6 +2,14 @@
 = Installation
 :description: This section describes the installation of Neo4j MCP.
 
+== Quickstart with Homebrew (Mac only):
+[source, bash]
+----
+brew install neo4j-mcp
+----
+
+== Manually install the server
+
 Visit the release page for Neo4j MCP: https://github.com/neo4j/mcp/releases
 
 . Download the archive for your operating system.
