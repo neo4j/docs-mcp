@@ -42,10 +42,6 @@ Traditional username/password authentication suitable for:
 - *Development and testing* environments
 - *Direct database credentials* without SSO
 
-=== Authentication Precedence
-
-If both `Authorization: Bearer` and `Authorization: Basic` headers are present in the same request, the Bearer token takes precedence.
-
 === Which Authentication Method Should I Use?
 
 *Use Bearer Token when:*
