@@ -88,9 +88,57 @@ Alternatively, you can use command-line flags in the `args` array to override en
 }
 ----
 
+=== HTTP Mode Configuration (VSCode)
+
+For HTTP mode, you can configure with Basic Authentication or Bearer Token authentication.
+
+*Option 1: Basic Authentication*
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j-http": {
+      "type": "http",
+      "url": "http://127.0.0.1:80/mcp",
+      "headers": {
+        "Authorization": "Basic BASE64_ENCODED_CREDENTIALS"
+      }
+    }
+  }
+}
+----
+
+Generate the base64-encoded credentials:
+[source, bash]
+----
+echo -n "neo4j:password" | base64
+----
+
+*Option 2: Bearer Token (Enterprise/Aura with SSO)*
+
+For Neo4j Enterprise or Aura with SSO/OAuth configured:
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j-http-bearer": {
+      "type": "http",
+      "url": "http://127.0.0.1:80/mcp",
+      "headers": {
+        "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+      }
+    }
+  }
+}
+----
+
+Replace the bearer token with your actual OAuth/SSO token from your identity provider.
+
 [NOTE]
 ====
-For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes] and xref:usage.adoc#configuration[Configuration] sections.
+For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes], xref:usage.adoc#configuration[Configuration], and xref:tls-setup.adoc[TLS/HTTPS Setup] sections.
 ====
 
 Restart VSCode.
@@ -167,7 +215,52 @@ Notes:
 - For Aura, use the connection string from the Aura Console.
 - All connection parameters (URI, username, password) are required for STDIO mode and have no default values.
 
+=== HTTP Mode Configuration (Claude Desktop)
+
+For HTTP mode, you can configure with Basic Authentication or Bearer Token authentication.
+
+*Option 1: Basic Authentication*
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-http": {
+      "type": "http",
+      "url": "http://127.0.0.1:80/mcp",
+      "headers": {
+        "Authorization": "Basic bmVvNGo6eW91cl9zZWN1cmVfcGFzc3dvcmQ="
+      }
+    }
+  }
+}
+----
+
+Replace `bmVvNGo6eW91cl9zZWN1cmVfcGFzc3dvcmQ=` with your own base64-encoded credentials.
+Generate using: `echo -n "neo4j:your_secure_password" | base64`
+
+*Option 2: Bearer Token (Enterprise/Aura with SSO)*
+
+For Neo4j Enterprise or Aura with SSO/OAuth configured:
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-http-bearer": {
+      "type": "http",
+      "url": "http://127.0.0.1:80/mcp",
+      "headers": {
+        "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+      }
+    }
+  }
+}
+----
+
+Replace the bearer token with your actual OAuth/SSO token from your identity provider.
+
 [NOTE]
 ====
-For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes] and xref:usage.adoc#configuration[Configuration] sections.
+For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:usage.adoc#transport-modes[Transport modes], xref:usage.adoc#configuration[Configuration], and xref:tls-setup.adoc[TLS/HTTPS Setup] sections.
 ====

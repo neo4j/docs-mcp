@@ -1,0 +1,202 @@
+[[tls-setup]]
+= TLS/HTTPS Setup
+:description: This section describes how to configure secure TLS/HTTPS connections for Neo4j MCP Server.
+
+== Overview
+
+This guide covers configuring secure TLS/HTTPS connections for the Neo4j MCP server in HTTP transport mode.
+
+[IMPORTANT]
+====
+All certificates must be in *PEM format* (text-based format with `-----BEGIN CERTIFICATE-----` headers).
+The server does not support DER or PKCS12 formats.
+====
+
+== Certificate requirements
+
+=== Format specification
+
+Certificates must use PEM encoding exclusively.
+
+=== Certificate Authority considerations
+
+Self-signed certificates *do not work out of the box with many MCP clients* (e.g., VSCode Copilot, Claude Desktop).
+These clients require certificates from trusted Certificate Authorities.
+
+*Suitable self-signed certificate uses:*
+
+- Development on localhost
+- Testing environments with relaxed security
+- Scenarios where client configuration is controlled
+
+*Production options:*
+
+- Let's Encrypt (free, automated)
+- Internal organizational CAs
+- Commercial certificate providers
+
+== Quick start
+
+=== Generate test certificates
+
+For localhost testing:
+
+[source, bash]
+----
+openssl req -x509 -newkey rsa:4096 \
+  -keyout key.pem -out cert.pem \
+  -days 365 -nodes -subj "/CN=localhost"
+----
+
+For specific domain with Subject Alternative Names (SANs):
+
+[source, bash]
+----
+openssl req -x509 -newkey rsa:4096 \
+  -keyout key.pem -out cert.pem \
+  -days 365 -nodes -subj "/CN=your-domain.com" \
+  -addext "subjectAltName=DNS:your-domain.com,DNS:www.your-domain.com"
+----
+
+=== Start the server
+
+Using command-line flags:
+
+[source, bash]
+----
+neo4j-mcp \
+  --neo4j-uri bolt://localhost:7687 \
+  --neo4j-transport-mode http \
+  --neo4j-http-port 8443 \
+  --neo4j-http-tls-enabled true \
+  --neo4j-http-tls-cert-file cert.pem \
+  --neo4j-http-tls-key-file key.pem
+----
+
+Or using environment variables:
+
+[source, bash]
+----
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_MCP_TRANSPORT="http"
+export NEO4J_MCP_HTTP_TLS_ENABLED="true"
+export NEO4J_MCP_HTTP_TLS_CERT_FILE="cert.pem"
+export NEO4J_MCP_HTTP_TLS_KEY_FILE="key.pem"
+neo4j-mcp
+----
+
+== Testing TLS configuration
+
+=== Basic connectivity
+
+Test root path (returns 404):
+
+[source, bash]
+----
+curl -k https://127.0.0.1:8443/
+----
+
+Test MCP endpoint without authentication (returns 401):
+
+[source, bash]
+----
+curl -k https://127.0.0.1:8443/mcp
+----
+
+[NOTE]
+====
+The `-k` flag bypasses certificate verification (necessary for self-signed certificates in testing).
+====
+
+=== MCP protocol validation
+
+Initialize session:
+
+[source, bash]
+----
+curl -k -u neo4j:password \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "initialize",
+    "params": {
+      "protocolVersion": "2024-11-05",
+      "capabilities": {},
+      "clientInfo": {
+        "name": "test-client",
+        "version": "1.0.0"
+      }
+    },
+    "id": 1
+  }' \
+  https://127.0.0.1:8443/mcp
+----
+
+List available tools:
+
+[source, bash]
+----
+curl -k -u neo4j:password \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "tools/list", "id": 1}' \
+  https://127.0.0.1:8443/mcp
+----
+
+=== TLS verification
+
+Inspect certificate details:
+
+[source, bash]
+----
+openssl s_client -connect 127.0.0.1:8443 -showcerts | openssl x509 -text -noout
+----
+
+Check TLS protocol version:
+
+[source, bash]
+----
+openssl s_client -connect 127.0.0.1:8443 -tls1_3 | grep "Protocol"
+----
+
+== Configuration notes
+
+- The `-k` flag bypasses certificate verification (necessary for self-signed certificates)
+- Basic authentication credentials are required via `-u username:password`
+- Default port is 443 when TLS enabled, 80 when disabled
+- The server only processes requests to `/mcp`; other paths return 404
+- TLS configuration enforces TLS 1.2 minimum with secure default cipher suites
+
+== Production deployment
+
+For production environments, use certificates from a trusted Certificate Authority like Let's Encrypt:
+
+[source, bash]
+----
+neo4j-mcp \
+  --neo4j-uri bolt://localhost:7687 \
+  --neo4j-transport-mode http \
+  --neo4j-http-port 443 \
+  --neo4j-http-tls-enabled true \
+  --neo4j-http-tls-cert-file /etc/letsencrypt/live/your-domain.com/fullchain.pem \
+  --neo4j-http-tls-key-file /etc/letsencrypt/live/your-domain.com/privkey.pem
+----
+
+[IMPORTANT]
+====
+The certificate's Common Name (CN) and Subject Alternative Names (SANs) must match the domain name clients will use to connect.
+====
+
+With a trusted certificate, clients can connect without bypassing certificate verification:
+
+[source, bash]
+----
+curl -u neo4j:password https://your-domain.com/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "tools/list", "id": 1}'
+----
+
+== See also
+
+- xref:usage.adoc#transport-modes[Transport modes]
+- xref:usage.adoc#configuration[Configuration]
+- xref:installation.adoc[Installation]
