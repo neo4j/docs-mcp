@@ -1,6 +1,9 @@
 [[index]]
 = Neo4j MCP
+:page-aliases: usage.adoc
 :description: This section describes Neo4j MCP.
+
+Official Model Context Protocol (MCP) server for Neo4j.
 
 == Prerequisites
 
