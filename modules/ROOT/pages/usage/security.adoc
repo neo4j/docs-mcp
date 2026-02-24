@@ -1,0 +1,4 @@
+= Security considerations
+
+- Use a restricted Neo4j user for exploration.
+- Review the generated Cypher queries before executing them in production databases.

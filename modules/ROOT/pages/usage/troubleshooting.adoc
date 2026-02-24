@@ -1,0 +1,48 @@
+= Troubleshooting authentication
+
+== Bearer Token Issues
+
+*401 Unauthorized - Token not accepted*
+
+- Verify your Neo4j instance is Enterprise Edition or Aura with OAuth/SSO configured
+- Community Edition does not support bearer token authentication - use Basic Auth instead
+- Confirm the token hasn't expired - bearer tokens typically have short lifespans (15-60 minutes)
+- Check with your identity provider to ensure the token is valid
+
+*Invalid token format*
+
+- Ensure the header format is exactly: `Authorization: Bearer YOUR_TOKEN`
+- No extra spaces before or after "Bearer"
+- Token should not be base64-encoded (unlike Basic Auth)
+
+*Neo4j rejects valid token*
+
+- Verify your Neo4j instance is configured to accept tokens from your identity provider
+- Check Neo4j server logs for specific authentication errors
+- Confirm the token issuer matches Neo4j's OAuth configuration
+
+== Basic Auth Issues
+
+*401 Unauthorized - Credentials not accepted*
+
+- Verify username and password are correct
+- Check that credentials are properly base64 encoded: `echo -n "user:pass" | base64`
+- Ensure the authorization header format is: `Authorization: Basic BASE64_STRING`
+
+*Empty credentials error*
+
+- Both username and password must be non-empty
+- The base64 string must decode to `username:password` format with both parts present
+
+== General Issues
+
+*No authentication header provided*
+
+- HTTP mode requires authentication on every request
+- Ensure your MCP client configuration includes the `Authorization` header
+
+*Connection refused / Cannot reach server*
+
+- Verify the Neo4j MCP server is running in HTTP mode
+- Check the server is listening on the correct host:port
+- Confirm firewall rules allow connections to the MCP server port
