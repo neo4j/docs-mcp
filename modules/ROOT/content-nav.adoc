@@ -1,10 +1,16 @@
+* *Neo4j MCP*
+
 * xref:index.adoc[]
-** xref:installation.adoc[]
-** xref:tools.adoc[]
-** xref:configuration.adoc[]
-** xref:tls-setup.adoc[]
-** xref:authentication.adoc[]
-** xref:logging.adoc[]
-** xref:natural-language-prompts.adoc[]
-** xref:security.adoc[]
-** xref:telemetry.adoc[]
+* xref:tools.adoc[]
+
+* *Setup*
+
+* xref:installation.adoc[]
+* xref:configuration.adoc[]
+* xref:tls-setup.adoc[]
+* xref:authentication.adoc[]
+
+* *Monitoring*
+
+* xref:logging.adoc[]
+* xref:telemetry.adoc[]

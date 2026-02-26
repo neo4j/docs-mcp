@@ -1,7 +1,0 @@
-= Examples for natural language prompts
-
-Here are some example prompts you can try in Copilot or any other MCP client:
-
-- "What does my Neo4j instance contain? List all node labels, relationship types, and property keys."
-- "Find all Person nodes and their relationships in my Neo4j instance."
-- "Create a new User node with a name 'John' in my Neo4j instance."

@@ -1,4 +1,4 @@
-= Authentication methods (HTTP mode)
+= Authentication
 
 When using HTTP transport mode, the Neo4j MCP server supports two authentication methods to accommodate different deployment scenarios:
 
