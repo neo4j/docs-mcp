@@ -197,6 +197,6 @@ curl -u neo4j:password https://your-domain.com/mcp \
 
 == See also
 
-- xref:usage.adoc#transport-modes[Transport modes]
-- xref:usage.adoc#configuration[Configuration]
+- xref:configuration.adoc#transport-modes[Transport modes]
+- xref:configuration.adoc[Configuration]
 - xref:installation.adoc[Installation]
