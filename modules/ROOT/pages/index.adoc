@@ -19,11 +19,13 @@ Neo4j MCP enables AI agents to:
 * Run Cypher queries - execute, read, and write queries against your database in response to natural language prompts.
 * Inspect and analyze data - retrieve nodes, relationships, and paths to answer questions, generate summaries, or feed data to other workflows.
 
+
 == Prerequisites
 
-* A running Neo4j database instance. Options include Aura, neo4j-desktop or self-managed.
+* A running Neo4j database instance. Options include link:https://neo4j.com/product/auradb/[Aura], link:https://neo4j.com/download/[neo4j-desktop] or link:https://neo4j.com/deployment-center/#gdb-tab[self-managed].
 * The APOC plugin installed in the Neo4j instance.
-* Any MCP-compatible client, e.g. VSCode with MCP support.
+* Any MCP-compatible client, e.g. link:https://code.visualstudio.com/[VSCode] with link:https://code.visualstudio.com/docs/copilot/customization/mcp-servers[MCP support].
+
 
 == Security considerations
 

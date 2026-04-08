@@ -18,11 +18,13 @@ Set the transport mode using the `NEO4J_TRANSPORT_MODE` environment variable or 
 
 In STDIO mode, credentials are provided via environment variables (`NEO4J_USERNAME` and `NEO4J_PASSWORD`).
 The server validates connectivity and APOC availability at startup.
+Telemetry collects the Neo4j version, the edition and the Cypher version at startup.
 
 === HTTP mode
 
 In HTTP mode, the server operates statelessly and accepts per-request authentication credentials (Bearer Token or Basic Authentication).
 Do NOT set `NEO4J_USERNAME` or `NEO4J_PASSWORD` environment variables in HTTP mode, as credentials come from per-request authentication headers.
+Telemetry reports "unknown-http-mode" and the actual version info is not available on startup.
 
 == Environment variables
 

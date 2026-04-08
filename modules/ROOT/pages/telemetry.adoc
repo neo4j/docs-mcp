@@ -5,3 +5,6 @@ This includes information like the tools being used, the operating system, and C
 We do not collect any personal or sensitive information.
 
 To disable telemetry, set the `NEO4J_TELEMETRY` environment variable to `"false"`.
+ Accepted values are `true` or `false` (default: `true`).
+
+ You can also use the `--neo4j-telemetry` CLI flag to override this setting.

@@ -11,7 +11,34 @@ Provided tools:
 | `list-gds-procedures` | Yes     | List GDS procedures available in the instance  | Help the client LLM to have better visibility on available GDS procedures.
 |===
 
+[CAUTION]
+====
+Neo4j 5.26.18 has a bug in APOC that causes the `get-schema` tool to fail.
+This issue is fixed in Neo4j 5.26.19 and above.
+If you're using Neo4j 5.26.18, upgrade to 5.26.19 or later.
+See link:https://github.com/neo4j/mcp/issues/136[MCP issue 136] for details.
+====
+
 == Readonly mode
 
-Enable readonly mode by setting the `NEO4J_READ_ONLY` environment variable to `true`.
+Enable readonly mode by setting the `NEO4J_READ_ONLY` environment variable to `true` (for example, `"NEO4J_READ_ONLY": "true"`).
+Accepted values are `true` or `false` (default: `false`).
+
+You can also override this setting using the `--neo4j-read-only` CLI flag:
+
+[source, bash]
+----
+neo4j-mcp --neo4j-uri "bolt://localhost:7687" --neo4j-username "neo4j" --neo4j-password "password" --neo4j-read-only true
+----
+
 When enabled, write tools (such as `write-cypher`) are not exposed to clients.
+
+
+== Query classification
+
+The `read-cypher` tool performs an extra round-trip to the Neo4j database to guarantee read-only operations.
+
+- **Write operations**: `CREATE`, `MERGE`, `DELETE`, `SET`, etc., are treated as non-read queries.
+- **Admin queries**: Commands like `SHOW USERS`, `SHOW DATABASES`, etc., are treated as non-read queries and must use `write-cypher` instead.
+- **Profile queries**: `EXPLAIN PROFILE` queries are treated as non-read queries, even if the underlying statement is read-only.
+- **Schema operations**: `CREATE INDEX`, `DROP CONSTRAINT`, etc., are treated as non-read queries.
