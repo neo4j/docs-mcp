@@ -56,12 +56,22 @@ Create / edit `mcp.json`:
         "NEO4J_USERNAME": "neo4j",
         "NEO4J_PASSWORD": "password",
         "NEO4J_DATABASE": "neo4j",
-        "NEO4J_READ_ONLY": "true"
+        "NEO4J_READ_ONLY": "true",
+        "NEO4J_TELEMETRY": "false",
+        "NEO4J_LOG_LEVEL": "info",
+        "NEO4J_LOG_FORMAT": "text",
+        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
       }
     }
   }
 }
 ----
+
+[NOTE]
+====
+The first three environment variables (`NEO4J_URI`, `NEO4J_USERNAME` and `NEO4J_PASSWORD`) are required.
+The server fails to start if any of these are missing.
+====
 
 Set environment variables in the `env` object as shown above.
 
@@ -78,7 +88,11 @@ Alternatively, you can use command-line flags in the `args` array to override en
         "--neo4j-uri", "bolt://localhost:7687",
         "--neo4j-username", "neo4j",
         "--neo4j-password", "password",
-        "--neo4j-database", "neo4j"
+        "--neo4j-database", "neo4j",
+        "--neo4j-telemetry": "false",
+        "--neo4j-log-level": "info",
+        "--neo4j-log-format": "text",
+        "--neo4j-schema-sample-size": "100"
       ],
       "env": {
         "NEO4J_READ_ONLY": "true"
@@ -88,7 +102,22 @@ Alternatively, you can use command-line flags in the `args` array to override en
 }
 ----
 
-=== HTTP Mode Configuration (VSCode)
+Restart VSCode; open Copilot Chat and ask: "List Neo4j MCP tools" to confirm.
+
+=== HTTP mode configuration (VSCode)
+
+First, start your Neo4j MCP server in HTTP mode:
+
+[source, bash]
+----
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4j_TRANSPORT_MODE="http"
+neo4j-mcp
+----
+
+The server starts on `http://127.0.0.1:80` by default.
+
+Then create or edit your `mcp.json` file.
 
 For HTTP mode, you can configure with Basic Authentication or Bearer Token authentication.
 
@@ -110,6 +139,7 @@ For HTTP mode, you can configure with Basic Authentication or Bearer Token authe
 ----
 
 Generate the base64-encoded credentials:
+
 [source, bash]
 ----
 echo -n "neo4j:password" | base64
@@ -147,7 +177,7 @@ Open Copilot Chat and make sure that the prompt "List Neo4j MCP tools" returns e
 Also refer to link:https://code.visualstudio.com/docs/copilot/customization/mcp-servers[VSCode Copilot docs].
 
 
-== Configure Claude desktop
+== Configure Claude Desktop
 
 Install link:https://claude.ai/download[Claude for desktop].
 
@@ -175,12 +205,22 @@ Add the `neo4j-mcp` MCP in the `mcpServers` key:
         "NEO4J_USERNAME": "neo4j",
         "NEO4J_PASSWORD": "password",
         "NEO4J_DATABASE": "neo4j",
-        "NEO4J_READ_ONLY": "true"
+        "NEO4J_READ_ONLY": "true",
+        "NEO4J_TELEMETRY": "false",
+        "NEO4J_LOG_LEVEL": "info",
+        "NEO4J_LOG_FORMAT": "text",
+        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
       }
     }
   }
 }
 ----
+
+[NOTE]
+====
+The first three environment variables (`NEO4J_URI`, `NEO4J_USERNAME` and `NEO4J_PASSWORD`) are required.
+The server fails to start if any of these are missing.
+====
 
 Set environment variables in the `env` object as shown above.
 
@@ -197,7 +237,11 @@ Alternatively, you can use command-line flags in the `args` array:
         "--neo4j-uri", "bolt://localhost:7687",
         "--neo4j-username", "neo4j",
         "--neo4j-password", "password",
-        "--neo4j-database", "neo4j"
+        "--neo4j-database", "neo4j",
+        "--neo4j-telemetry": "false",
+        "--neo4j-log-level": "info",
+        "--neo4j-log-format": "text",
+        "--neo4j-schema-sample-size": "100"
       ],
       "env": {
         "NEO4J_READ_ONLY": "true"
@@ -215,7 +259,16 @@ Notes:
 - For Aura, use the connection string from the Aura Console.
 - All connection parameters (URI, username, password) are required for STDIO mode and have no default values.
 
-=== HTTP Mode Configuration (Claude Desktop)
+=== HTTP mode configuration (Claude Desktop)
+
+First, start your Neo4j MCP server in HTTP mode.
+
+Then edit your Claude Desktop configuration file:
+
+**Location:**
+
+- MacOS/Linux: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json` (your config location may vary)
 
 For HTTP mode, you can configure with Basic Authentication or Bearer Token authentication.
 
@@ -264,3 +317,78 @@ Replace the bearer token with your actual OAuth/SSO token from your identity pro
 ====
 For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes], xref:configuration.adoc[Configuration], and xref:tls-setup.adoc[TLS/HTTPS Setup] sections.
 ====
+
+=== Build MCPB Bundle (for Claude Desktop)
+
+You can package the MCP server into an `.mcpb` bundle for distribution with MCP clients (e.g., Anthropic/Claude).
+See link:https://github.com/modelcontextprotocol/mcpb/.[mcpb] for details.
+
+==== Bundle configuration files
+
+The final `.mcpb` build depends on:
+
+- `manifest.json`
+- `.mcpbignore`
+
+[source, bash]
+----
+# Install MCPB CLI (once)
+npm install -g @anthropic-ai/mcpb
+
+# build binaries for your OS/Architecture
+go build -C cmd/neo4j-mcp -o ../../bin/
+
+# Build bundle from the repository root with a custom name
+mcpb pack . neo4j-official-mcp-1.0.0.mcpb
+----
+
+You can now go to Claude Desktop and install the bundle just created.
+
+On Claude Desktop:
+
+. Open the Settings page.
+. Under Desktop app, click the Extensions.
+. Select Advanced settings.
+. You can now install the extension using the **Install Extension**.
+
+[NOTE]
+====
+Review the `manifest.json` and `.mcpbignore` before packing.
+
+A limitation is present where it's not possible to override the command depending on the current architecture (ARM/AMD64).
+This makes building a general purpose bundle for all the supported architectures/OS more difficult.
+====
+
+== Multi-user or multi-tenant setup
+
+HTTP mode supports multiple users with different credentials accessing the same server.
+You can configure multiple server entries with different credentials:
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-admin": {
+      "type": "http",
+      "url": "http://127.0.0.1:80/mcp",
+      "headers": {
+        "Authorization": "Basic YWRtaW46YWRtaW5wYXNz"
+      }
+    },
+    "neo4j-readonly": {
+      "type": "http",
+      "url": "http://127.0.0.1:80/mcp",
+      "headers": {
+        "Authorization": "Basic cmVhZG9ubHk6cmVhZHBhc3M="
+      }
+    }
+  }
+}
+----
+
+Each server entry uses different Neo4j credentials, allowing you to switch between users in your MCP client.
+This is useful for:
+
+- Testing with different permission levels
+- Multi-tenant applications
+- Switching between admin and read-only access
