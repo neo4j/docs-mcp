@@ -318,6 +318,7 @@ Replace the bearer token with your actual OAuth/SSO token from your identity pro
 For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes], xref:configuration.adoc[Configuration], and xref:tls-setup.adoc[TLS/HTTPS Setup] sections.
 ====
 
+[[mcpb]]
 === Build MCPB Bundle (for Claude Desktop)
 
 You can package the MCP server into an `.mcpb` bundle for distribution with MCP clients (e.g., Anthropic/Claude).
