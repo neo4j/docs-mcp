@@ -40,21 +40,30 @@ To improve integration compatibility with these platforms, you can exclude the p
 
 The following environment variables are used for configuration:
 
-[cols="3*", options="header"]
+[cols="4*", options="header"]
 |===
-| Variable             | Description | Default
-| `NEO4J_URI`          | Connection URI (e.g., `bolt://localhost:7687`) | _Required_
-| `NEO4J_USERNAME`     | Neo4j username (STDIO mode only) | _Required for STDIO_
-| `NEO4J_PASSWORD`     | Neo4j password (STDIO mode only) | _Required for STDIO_
-| `NEO4J_DATABASE`     | Database name | `neo4j`
-| `NEO4J_READ_ONLY`    | Set to `true` to disable write tools | `false`
-| `NEO4J_TELEMETRY`    | Set to `false` to disable telemetry | `true`
-| `NEO4J_LOG_LEVEL`    | Log level (see xref:logging.adoc[]) | `info`
-| `NEO4J_LOG_FORMAT`   | Log output format: `text` or `json` | `text`
-| `NEO4J_SCHEMA_SAMPLE_SIZE`  | Number of nodes to sample for schema inference | 100
-| `NEO4J_MCP_TRANSPORT` | This option is deprecated. Please use NEO4J_TRANSPORT_MODE |
-| `NEO4J_TRANSPORT_MODE` | Transport mode: `stdio` or `http` | `stdio`
-| `NEO4J_HTTP_ALLOW_UNAUTHENTICATED` | Exclude the ping method from authentication requirements to account for integrations (such as AWS AgentCore) which rely on pings prior to initialization | `false`
+| Variable                           | Equivalent command-line flag                    | Description                                                | Default
+| `NEO4J_URI`                        | `--neo4j-uri`                                   | Connection URI (e.g., `bolt://localhost:7687`)             | _Required_
+| `NEO4J_DATABASE`                   | `--neo4j-database`                              | Database name                                              | `neo4j`
+| `NEO4J_READ_ONLY`                  | `--neo4j-read-only`                             | Set to `true` to disable write tools                       | `false`
+| `NEO4J_TELEMETRY`                  | `--neo4j-telemetry`                             | Set to `false` to disable telemetry                        | `true`
+| `NEO4J_LOG_LEVEL`                  | `--neo4j-log-level`                             | Log level (see xref:logging.adoc[])                        | `info`
+| `NEO4J_LOG_FORMAT`                 | `--neo4j-log-format`                            | Log output format: `text` or `json`                        | `text`
+| `NEO4J_SCHEMA_SAMPLE_SIZE`         | `--neo4j-schema-sample-size`                    | Number of nodes to sample for schema inference             | 100
+| `NEO4J_MCP_TRANSPORT`              | `--neo4j-mcp-transport`                         | This option is deprecated. Please use NEO4J_TRANSPORT_MODE |
+| `NEO4J_TRANSPORT_MODE`             | `--neo4j-transport-mode`                        | Transport mode: `stdio` or `http`                          | `stdio`
+| `NEO4J_HTTP_ALLOW_UNAUTHENTICATED` | `--neo4j-http-allowed-unauthenticated`          | Exclude the ping method from authentication requirements to account for integrations (such as AWS AgentCore) which rely on pings prior to initialization | `false`
+|===
+
+=== STDIO mode configuration
+
+Additional environment variables for STDIO mode:
+
+[cols="4*", options="header"]
+|===
+| Variable             | Equivalent command-line flag | Description                      | Default
+| `NEO4J_USERNAME`     | `--neo4j-username`           | Neo4j username (STDIO mode only) | _Required for STDIO_
+| `NEO4J_PASSWORD`     | `--neo4j-password`           | Neo4j password (STDIO mode only) | _Required for STDIO_
 |===
 
 === HTTP mode configuration
@@ -63,22 +72,22 @@ Additional environment variables for HTTP mode:
 
 [cols="3*", options="header"]
 |===
-| Variable             | Description | Default
-| `NEO4J_MCP_HTTP_HOST` | Server binding address | `127.0.0.1`
-| `NEO4J_MCP_HTTP_PORT` | Server listening port | `80` (or `443` with TLS)
-| `NEO4J_MCP_HTTP_ALLOWED_ORIGINS` | CORS configuration (comma-separated list, `*` for all, empty to disable) | _empty (disabled)_
+| Variable                         | Equivalent command-line flag       | Description                                                              | Default
+| `NEO4J_MCP_HTTP_HOST`            | `--neo4j-http-host`                | Server binding address                                                   | `127.0.0.1`
+| `NEO4J_MCP_HTTP_PORT`            | `--neo4j-http-port`                | Server listening port                                                    | `80` (or `443` with TLS)
+| `NEO4J_MCP_HTTP_ALLOWED_ORIGINS` | `--neo4j-mcp-http-allowed-origins` | CORS configuration (comma-separated list, `*` for all, empty to disable) | _empty (disabled)_
 |===
 
-=== TLS/HTTPS configuration
+==== TLS/HTTPS configuration
 
 Configure TLS for secure HTTPS connections in HTTP mode:
 
 [cols="3*", options="header"]
 |===
-| Variable             | Description | Default
-| `NEO4J_MCP_HTTP_TLS_ENABLED` | Enable TLS/HTTPS | `false`
-| `NEO4J_MCP_HTTP_TLS_CERT_FILE` | Path to TLS certificate file | _Required if TLS enabled_
-| `NEO4J_MCP_HTTP_TLS_KEY_FILE` | Path to TLS private key file | _Required if TLS enabled_
+| Variable                       | Equivalent command-line flag | Description                  | Default
+| `NEO4J_MCP_HTTP_TLS_ENABLED`   | `--neo4j-http-tls-enabled`   | Enable TLS/HTTPS             | `false`
+| `NEO4J_MCP_HTTP_TLS_CERT_FILE` | `--neo4j-http-tls-cert-file` | Path to TLS certificate file | _Required if TLS enabled_
+| `NEO4J_MCP_HTTP_TLS_KEY_FILE`  | `--neo4j-http-tls-key-file`  | Path to TLS private key file | _Required if TLS enabled_
 |===
 
 [NOTE]
@@ -88,77 +97,7 @@ When TLS is enabled, the default port changes from 80 to 443.
 For detailed TLS/HTTPS setup instructions, certificate requirements, and testing procedures, see xref:tls-setup.adoc[TLS/HTTPS Setup].
 ====
 
-== Command-line flags
-
-The following command-line flags are available and take precedence over environment variables:
-
-=== General flags
-
-[cols="2*", options="header"]
-|===
-| Flag                  | Description
-| `--neo4j-uri`         | Override `NEO4J_URI` environment variable
-| `--neo4j-username`    | Override `NEO4J_USERNAME` environment variable (STDIO mode only)
-| `--neo4j-password`    | Override `NEO4J_PASSWORD` environment variable (STDIO mode only)
-| `--neo4j-database`    | Override `NEO4J_DATABASE` environment variable
-| `--neo4j-read-only`   | Override `NEO4J_READ_ONLY` environment variable
-| `--neo4j-telemetry`   | Override `NEO4J_TELEMETRY` environment variable
-| `--neo4j-schema-sample-size`  | Override `NEO4J_SCHEMA_SAMPLE_SIZE` environment variable
-| `--neo4j-transport-mode` | Override `NEO4J_MCP_TRANSPORT` (values: `stdio` or `http`)
-| `-v`, `--version`     | Display version information
-|===
-
-=== HTTP mode flags
-
-[cols="2*", options="header"]
-|===
-| Flag                  | Description
-| `--neo4j-http-host`   | Override `NEO4J_MCP_HTTP_HOST` environment variable
-| `--neo4j-http-port`   | Override `NEO4J_MCP_HTTP_PORT` environment variable
-| `--neo4j-http-tls-enabled` | Override `NEO4J_MCP_HTTP_TLS_ENABLED` environment variable
-| `--neo4j-http-tls-cert-file` | Override `NEO4J_MCP_HTTP_TLS_CERT_FILE` environment variable
-| `--neo4j-http-tls-key-file` | Override `NEO4J_MCP_HTTP_TLS_KEY_FILE` environment variable
-|===
-
-Command-line flags take precedence over environment variables.
-
 [NOTE]
 ====
-**STDIO mode**: The three required connection parameters (URI, username, and password) must be provided via environment variables, command-line flags, or a combination of both.
-
-**HTTP mode**: Only the URI is required via environment variables or command-line flags. Credentials are provided per-request via Basic Authentication headers.
+Command-line flags take precedence over environment variables.
 ====
-
-== CLI Flags
-
-You can override any environment variable using CLI flags:
-
-[source, json]
-----
-neo4j-mcp --neo4j-uri "bolt://localhost:7687" \
-          --neo4j-username "neo4j" \
-          --neo4j-password "password" \
-          --neo4j-database "neo4j" \
-          --neo4j-read-only false \
-          --neo4j-telemetry true
-----
-
-Available flags:
-
-- `--neo4j-uri` - Neo4j connection URI (overrides NEO4J_URI)
-- `--neo4j-username` - Database username (overrides NEO4J_USERNAME)
-- `--neo4j-password` - Database password (overrides NEO4J_PASSWORD)
-- `--neo4j-database` - Database name (overrides NEO4J_DATABASE)
-- `--neo4j-read-only` - Enable read-only mode: `true` or `false` (overrides NEO4J_READ_ONLY)
-- `--neo4j-telemetry` - Enable telemetry: `true` or `false` (overrides NEO4J_TELEMETRY)
-- `--neo4j-schema-sample-size` - Modify the sample size used to infer the Neo4j schema
-- `--neo4j-transport-mode` - Transport mode: `stdio` or `http` (overrides NEO4J_TRANSPORT_MODE)
-- `--neo4j-http-host` - HTTP server host (overrides NEO4J_MCP_HTTP_HOST)
-- `--neo4j-http-port` - HTTP server port (overrides NEO4J_MCP_HTTP_PORT)
-- `--neo4j-http-tls-enabled` - Enable TLS/HTTPS: `true` or `false` (overrides NEO4J_MCP_HTTP_TLS_ENABLED)
-- `--neo4j-http-tls-cert-file` - Path to TLS certificate file (overrides NEO4J_MCP_HTTP_TLS_CERT_FILE)
-- `--neo4j-http-tls-key-file` - Path to TLS private key file (overrides NEO4J_MCP_HTTP_TLS_KEY_FILE)
-- `--neo4j-http-auth-header-name` - Name of the HTTP header to read auth credentials from (overrides NEO4J_AUTH_HEADER_NAME)
-- `--neo4j-http-allow-unauthenticated-ping` - Allow ping health checks: `true` or `false` (overrides NEO4J_HTTP_ALLOW_UNAUTHENTICATED_PING)
-
-Use `neo4j-mcp --help` to see all available options.
