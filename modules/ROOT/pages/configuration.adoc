@@ -59,7 +59,7 @@ Additional environment variables for STDIO mode:
 
 Additional environment variables for HTTP mode:
 
-[cols="3*", options="header"]
+[cols="4*", options="header"]
 |===
 | Variable                         | Equivalent command-line flag       | Description                                                              | Default
 | `NEO4J_MCP_HTTP_HOST`            | `--neo4j-http-host`                | Server binding address                                                   | `127.0.0.1`
