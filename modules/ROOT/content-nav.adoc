@@ -7,10 +7,14 @@
 
 * xref:installation.adoc[]
 * xref:configuration.adoc[]
-* xref:tls-setup.adoc[]
 * xref:authentication.adoc[]
+* xref:mcpb.adoc[]
 
 * *Monitoring*
 
 * xref:logging.adoc[]
 * xref:telemetry.adoc[]
+
+* *Versions and support*
+
+* xref:known-issues.adoc[]

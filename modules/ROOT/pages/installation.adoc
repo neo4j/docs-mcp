@@ -168,7 +168,7 @@ Replace the bearer token with your actual OAuth/SSO token from your identity pro
 
 [NOTE]
 ====
-For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes], xref:configuration.adoc[Configuration], and xref:tls-setup.adoc[TLS/HTTPS Setup] sections.
+For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes] and xref:configuration.adoc[Configuration] sections.
 ====
 
 Restart VSCode.
@@ -315,49 +315,7 @@ Replace the bearer token with your actual OAuth/SSO token from your identity pro
 
 [NOTE]
 ====
-For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes], xref:configuration.adoc[Configuration], and xref:tls-setup.adoc[TLS/HTTPS Setup] sections.
-====
-
-[[mcpb]]
-=== Build MCPB Bundle (for Claude Desktop)
-
-You can package the MCP server into an `.mcpb` bundle for distribution with MCP clients (e.g., Anthropic/Claude).
-See link:https://github.com/modelcontextprotocol/mcpb/.[mcpb] for details.
-
-==== Bundle configuration files
-
-The final `.mcpb` build depends on:
-
-- `manifest.json`
-- `.mcpbignore`
-
-[source, bash]
-----
-# Install MCPB CLI (once)
-npm install -g @anthropic-ai/mcpb
-
-# build binaries for your OS/Architecture
-go build -C cmd/neo4j-mcp -o ../../bin/
-
-# Build bundle from the repository root with a custom name
-mcpb pack . neo4j-official-mcp-1.0.0.mcpb
-----
-
-You can now go to Claude Desktop and install the bundle just created.
-
-On Claude Desktop:
-
-. Open the Settings page.
-. Under Desktop app, click the Extensions.
-. Select Advanced settings.
-. You can now install the extension using the **Install Extension**.
-
-[NOTE]
-====
-Review the `manifest.json` and `.mcpbignore` before packing.
-
-A limitation is present where it's not possible to override the command depending on the current architecture (ARM/AMD64).
-This makes building a general purpose bundle for all the supported architectures/OS more difficult.
+For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes] and xref:configuration.adoc[Configuration] sections.
 ====
 
 == Multi-user or multi-tenant setup

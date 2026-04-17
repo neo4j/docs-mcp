@@ -25,9 +25,9 @@ In HTTP mode, the server operates statelessly and accepts per-request authentica
 Do NOT set `NEO4J_USERNAME` or `NEO4J_PASSWORD` environment variables in HTTP mode, as credentials come from per-request authentication headers.
 
 
-== Environment variables
+== General configuration
 
-The following environment variables are used for configuration:
+The following environment variables and equivalent command-line flags are general configuration options:
 
 [cols="4*", options="header"]
 |===
@@ -35,18 +35,18 @@ The following environment variables are used for configuration:
 | `NEO4J_URI`                        | `--neo4j-uri`                                   | Connection URI (e.g., `bolt://localhost:7687`)             | _Required_
 | `NEO4J_DATABASE`                   | `--neo4j-database`                              | Database name                                              | `neo4j`
 | `NEO4J_READ_ONLY`                  | `--neo4j-read-only`                             | Set to `true` to disable write tools                       | `false`
-| `NEO4J_TELEMETRY`                  | `--neo4j-telemetry`                             | Set to `false` to disable telemetry                        | `true`
+| `NEO4J_TELEMETRY`                  | `--neo4j-telemetry`                             | Set to `false` to disable telemetry (see xref:telemetry.adoc[])                        | `true`
 | `NEO4J_LOG_LEVEL`                  | `--neo4j-log-level`                             | Log level (see xref:logging.adoc[])                        | `info`
-| `NEO4J_LOG_FORMAT`                 | `--neo4j-log-format`                            | Log output format: `text` or `json`                        | `text`
+| `NEO4J_LOG_FORMAT`                 | `--neo4j-log-format`                            | Log output format: `text` or `json` (see xref:logging.adoc#_log_formats[Log formats])                       | `text`
 | `NEO4J_SCHEMA_SAMPLE_SIZE`         | `--neo4j-schema-sample-size`                    | Number of nodes to sample for schema inference             | 100
 | `NEO4J_MCP_TRANSPORT`              | `--neo4j-mcp-transport`                         | This option is deprecated. Please use NEO4J_TRANSPORT_MODE |
 | `NEO4J_TRANSPORT_MODE`             | `--neo4j-transport-mode`                        | Transport mode: `stdio` or `http`                          | `stdio`
 | `NEO4J_HTTP_ALLOW_UNAUTHENTICATED` | `--neo4j-http-allowed-unauthenticated`          | Exclude the ping method from authentication requirements to account for integrations (such as AWS AgentCore) which rely on pings prior to initialization | `false`
 |===
 
-=== STDIO mode configuration
+=== STDIO configuration
 
-Additional environment variables for STDIO mode:
+Additional environment variables and equivalent command-line flags for STDIO mode:
 
 [cols="4*", options="header"]
 |===
@@ -55,9 +55,9 @@ Additional environment variables for STDIO mode:
 | `NEO4J_PASSWORD`     | `--neo4j-password`           | Neo4j password (STDIO mode only) | _Required for STDIO_
 |===
 
-=== HTTP mode configuration
+=== HTTP configuration
 
-Additional environment variables for HTTP mode:
+Additional environment variables and equivalent command-line flags for HTTP mode:
 
 [cols="4*", options="header"]
 |===
@@ -71,20 +71,13 @@ Additional environment variables for HTTP mode:
 
 Configure TLS for secure HTTPS connections in HTTP mode:
 
-[cols="3*", options="header"]
+[cols="4*", options="header"]
 |===
 | Variable                       | Equivalent command-line flag | Description                  | Default
 | `NEO4J_MCP_HTTP_TLS_ENABLED`   | `--neo4j-http-tls-enabled`   | Enable TLS/HTTPS             | `false`
 | `NEO4J_MCP_HTTP_TLS_CERT_FILE` | `--neo4j-http-tls-cert-file` | Path to TLS certificate file | _Required if TLS enabled_
 | `NEO4J_MCP_HTTP_TLS_KEY_FILE`  | `--neo4j-http-tls-key-file`  | Path to TLS private key file | _Required if TLS enabled_
 |===
-
-[NOTE]
-====
-TLS configuration enforces TLS 1.2 minimum with secure default cipher suites.
-When TLS is enabled, the default port changes from 80 to 443.
-For detailed TLS/HTTPS setup instructions, certificate requirements, and testing procedures, see xref:tls-setup.adoc[TLS/HTTPS Setup].
-====
 
 [NOTE]
 ====
