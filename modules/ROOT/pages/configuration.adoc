@@ -24,15 +24,6 @@ The server validates connectivity and APOC availability at startup.
 In HTTP mode, the server operates statelessly and accepts per-request authentication credentials (Bearer Token or Basic Authentication).
 Do NOT set `NEO4J_USERNAME` or `NEO4J_PASSWORD` environment variables in HTTP mode, as credentials come from per-request authentication headers.
 
-== Unauthenticated MCP Ping
-
-By default, the ping method is protected by standard authentication flows.
-However, because the MCP specification allows pings prior to initialization, some integrations (such as AWS AgentCore) rely on this optional method as an initial health check mechanism.
-
-To improve integration compatibility with these platforms, you can exclude the ping method from authentication requirements via:
-
-- Environment Variable: `NEO4J_HTTP_ALLOW_UNAUTHENTICATED_PING=true`
-- or Command Line Flag: `--neo4j-http-allow-unauthenticated-ping true`
 
 == Environment variables
 
