@@ -318,36 +318,3 @@ Replace the bearer token with your actual OAuth/SSO token from your identity pro
 For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes] and xref:configuration.adoc[Configuration] sections.
 ====
 
-== Multi-user or multi-tenant setup
-
-HTTP mode supports multiple users with different credentials accessing the same server.
-You can configure multiple server entries with different credentials:
-
-[source, json]
-----
-{
-  "mcpServers": {
-    "neo4j-admin": {
-      "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
-      "headers": {
-        "Authorization": "Basic YWRtaW46YWRtaW5wYXNz"
-      }
-    },
-    "neo4j-readonly": {
-      "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
-      "headers": {
-        "Authorization": "Basic cmVhZG9ubHk6cmVhZHBhc3M="
-      }
-    }
-  }
-}
-----
-
-Each server entry uses different Neo4j credentials, allowing you to switch between users in your MCP client.
-This is useful for:
-
-- Testing with different permission levels
-- Multi-tenant applications
-- Switching between admin and read-only access
