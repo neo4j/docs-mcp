@@ -4,6 +4,8 @@
 You can package the MCP server into an `.mcpb` bundle for distribution with MCP clients (e.g., Anthropic/Claude).
 See link:https://github.com/modelcontextprotocol/mcpb/.[mcpb] for details.
 
+Cloning the repository is a requirement.
+
 == Bundle configuration files
 
 The final `.mcpb` build depends on:

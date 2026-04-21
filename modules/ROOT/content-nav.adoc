@@ -1,6 +1,7 @@
 * *Neo4j MCP*
 
 * xref:index.adoc[]
+* xref:quickstart.adoc[]
 * xref:tools.adoc[]
 
 * *Setup*
@@ -8,6 +9,7 @@
 * xref:installation.adoc[]
 * xref:configuration.adoc[]
 * xref:authentication.adoc[]
+* xref:startup-checks.adoc[]
 * xref:mcpb.adoc[]
 
 * *Monitoring*

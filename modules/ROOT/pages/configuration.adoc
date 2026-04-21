@@ -36,7 +36,7 @@ The following environment variables and equivalent command-line flags are genera
 | Variable                           | Equivalent command-line flag                    | Description                                                | Default
 | `NEO4J_URI`                        | `--neo4j-uri`                                   | Connection URI (e.g., `bolt://localhost:7687`)             | _Required_
 | `NEO4J_DATABASE`                   | `--neo4j-database`                              | Database name                                              | `neo4j`
-| `NEO4J_READ_ONLY`                  | `--neo4j-read-only`                             | Set to `true` to disable write tools                       | `false`
+| `NEO4J_READ_ONLY`                  | `--neo4j-read-only`                             | Set to `true` to disable write tools (see xref:tools.adoc#_readonly_mode[Readonly mode])                      | `false`
 | `NEO4J_TELEMETRY`                  | `--neo4j-telemetry`                             | Set to `false` to disable telemetry (see xref:telemetry.adoc[]) | `true`
 | `NEO4J_LOG_LEVEL`                  | `--neo4j-log-level`                             | Log level (see xref:logging.adoc[])                        | `info`
 | `NEO4J_LOG_FORMAT`                 | `--neo4j-log-format`                            | Log output format: `text` or `json` (see xref:logging.adoc#_log_formats[Log formats]) | `text`

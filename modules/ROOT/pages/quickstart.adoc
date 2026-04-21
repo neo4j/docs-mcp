@@ -1,0 +1,103 @@
+= Quickstart
+
+Here are minimal snippets to run the server.
+
+STDIO mode:
+
+[source, bash]
+----
+# STDIO mode
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_USERNAME="neo4j"
+export NEO4J_PASSWORD="password"
+# Optional: read-only mode
+export NEO4J_READ_ONLY="true"
+neo4j-mcp
+----
+
+HTTP mode:
+
+[source, bash]
+----
+# HTTP mode (no username/password env vars)
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_MCP_TRANSPORT="http"
+export NEO4J_MCP_HTTP_HOST="127.0.0.1"
+export NEO4J_MCP_HTTP_PORT="8080"
+neo4j-mcp
+----
+
+== STDIO mode examples
+
+Running with environment variables only (as configured in MCP client):
+
+[source, bash]
+----
+neo4j-mcp
+----
+
+Running with command-line flags:
+
+[source, bash]
+----
+neo4j-mcp --neo4j-uri bolt://localhost:7687 \
+  --neo4j-username neo4j \
+  --neo4j-password mypassword \
+  --neo4j-database neo4j
+----
+
+Mixing environment variables and flags (flags override env vars):
+
+[source, bash]
+----
+# Uses NEO4J_URI from environment, but overrides other parameters
+neo4j-mcp --neo4j-username admin \
+  --neo4j-password adminpass \
+  --neo4j-database production
+----
+
+== HTTP mode examples
+
+Running HTTP mode with environment variables:
+
+[source, bash]
+----
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_MCP_TRANSPORT="http"
+export NEO4J_MCP_HTTP_HOST="127.0.0.1"
+export NEO4J_MCP_HTTP_PORT="8080"
+neo4j-mcp
+----
+
+Running HTTP mode with CORS enabled:
+
+[source, bash]
+----
+export NEO4J_URI="bolt://localhost:7687"
+export NEO4J_MCP_TRANSPORT="http"
+export NEO4J_MCP_HTTP_ALLOWED_ORIGINS="http://localhost:3000,https://app.example.com"
+neo4j-mcp
+----
+
+Running HTTP mode with TLS enabled:
+
+[source, bash]
+----
+neo4j-mcp --neo4j-uri bolt://localhost:7687 \
+  --neo4j-transport-mode http \
+  --neo4j-http-tls-enabled true \
+  --neo4j-http-tls-cert-file /path/to/cert.pem \
+  --neo4j-http-tls-key-file /path/to/key.pem \
+  --neo4j-http-port 8443
+----
+
+[NOTE]
+====
+In HTTP mode, authentication credentials are provided per-request via Basic Authentication headers, not through environment variables or command-line flags.
+Each HTTP request must include an `Authorization` header with Base64-encoded credentials in the format `Basic <base64(username:password)>`.
+====
+
+== Security considerations
+
+Use a restricted Neo4j user for exploring the database.
+To avoid undesirable operations or even data loss, it is also advisable to review Cypher queries generated with MCP before executing them against a database, especially when it is a production database.
