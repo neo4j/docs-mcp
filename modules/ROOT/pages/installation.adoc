@@ -106,65 +106,7 @@ Restart VSCode; open Copilot Chat and ask: "List Neo4j MCP tools" to confirm.
 
 === HTTP mode configuration (VSCode)
 
-First, start your Neo4j MCP server in HTTP mode:
-
-[source, bash]
-----
-export NEO4J_URI="bolt://localhost:7687"
-export NEO4j_TRANSPORT_MODE="http"
-neo4j-mcp
-----
-
-The server starts on `http://127.0.0.1:80` by default.
-
-Then create or edit your `mcp.json` file.
-
-For HTTP mode, you can configure with Basic Authentication or Bearer Token authentication.
-
-*Option 1: Basic Authentication*
-
-[source, json]
-----
-{
-  "servers": {
-    "neo4j-http": {
-      "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
-      "headers": {
-        "Authorization": "Basic BASE64_ENCODED_CREDENTIALS"
-      }
-    }
-  }
-}
-----
-
-Generate the base64-encoded credentials:
-
-[source, bash]
-----
-echo -n "neo4j:password" | base64
-----
-
-*Option 2: Bearer Token (Enterprise/Aura with SSO)*
-
-For Neo4j Enterprise or Aura with SSO/OAuth configured:
-
-[source, json]
-----
-{
-  "servers": {
-    "neo4j-http-bearer": {
-      "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
-      "headers": {
-        "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
-      }
-    }
-  }
-}
-----
-
-Replace the bearer token with your actual OAuth/SSO token from your identity provider.
+Use either xref:authentication.adoc#_bearer_token_authentication[Bearer token authentication] or xref:authentication.adoc#_basic_authentication[Basic authentication].
 
 [NOTE]
 ====
@@ -261,57 +203,14 @@ Notes:
 
 === HTTP mode configuration (Claude Desktop)
 
-First, start your Neo4j MCP server in HTTP mode.
-
-Then edit your Claude Desktop configuration file:
+Edit your Claude Desktop configuration file:
 
 **Location:**
 
 - MacOS/Linux: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - Windows: `%APPDATA%\Claude\claude_desktop_config.json` (your config location may vary)
 
-For HTTP mode, you can configure with Basic Authentication or Bearer Token authentication.
-
-*Option 1: Basic Authentication*
-
-[source, json]
-----
-{
-  "mcpServers": {
-    "neo4j-http": {
-      "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
-      "headers": {
-        "Authorization": "Basic bmVvNGo6eW91cl9zZWN1cmVfcGFzc3dvcmQ="
-      }
-    }
-  }
-}
-----
-
-Replace `bmVvNGo6eW91cl9zZWN1cmVfcGFzc3dvcmQ=` with your own base64-encoded credentials.
-Generate using: `echo -n "neo4j:your_secure_password" | base64`
-
-*Option 2: Bearer Token (Enterprise/Aura with SSO)*
-
-For Neo4j Enterprise or Aura with SSO/OAuth configured:
-
-[source, json]
-----
-{
-  "mcpServers": {
-    "neo4j-http-bearer": {
-      "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
-      "headers": {
-        "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
-      }
-    }
-  }
-}
-----
-
-Replace the bearer token with your actual OAuth/SSO token from your identity provider.
+Use either xref:authentication.adoc#_bearer_token_authentication[Bearer token authentication] or xref:authentication.adoc#_basic_authentication[Basic authentication].
 
 [NOTE]
 ====

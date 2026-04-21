@@ -22,6 +22,8 @@ The server validates connectivity and APOC availability at startup.
 === HTTP mode
 
 In HTTP mode, the server operates statelessly and accepts per-request authentication credentials (Bearer Token or Basic Authentication).
+Also see xref:authentication.adoc#_bearer_token_authentication[Authentication -> Bearer token authentication] and xref:authentication.adoc#_basic_authentication[Authentication -> Basic authentication].
+
 Do NOT set `NEO4J_USERNAME` or `NEO4J_PASSWORD` environment variables in HTTP mode, as credentials come from per-request authentication headers.
 
 
@@ -35,9 +37,9 @@ The following environment variables and equivalent command-line flags are genera
 | `NEO4J_URI`                        | `--neo4j-uri`                                   | Connection URI (e.g., `bolt://localhost:7687`)             | _Required_
 | `NEO4J_DATABASE`                   | `--neo4j-database`                              | Database name                                              | `neo4j`
 | `NEO4J_READ_ONLY`                  | `--neo4j-read-only`                             | Set to `true` to disable write tools                       | `false`
-| `NEO4J_TELEMETRY`                  | `--neo4j-telemetry`                             | Set to `false` to disable telemetry (see xref:telemetry.adoc[])                        | `true`
+| `NEO4J_TELEMETRY`                  | `--neo4j-telemetry`                             | Set to `false` to disable telemetry (see xref:telemetry.adoc[]) | `true`
 | `NEO4J_LOG_LEVEL`                  | `--neo4j-log-level`                             | Log level (see xref:logging.adoc[])                        | `info`
-| `NEO4J_LOG_FORMAT`                 | `--neo4j-log-format`                            | Log output format: `text` or `json` (see xref:logging.adoc#_log_formats[Log formats])                       | `text`
+| `NEO4J_LOG_FORMAT`                 | `--neo4j-log-format`                            | Log output format: `text` or `json` (see xref:logging.adoc#_log_formats[Log formats]) | `text`
 | `NEO4J_SCHEMA_SAMPLE_SIZE`         | `--neo4j-schema-sample-size`                    | Number of nodes to sample for schema inference             | 100
 | `NEO4J_MCP_TRANSPORT`              | `--neo4j-mcp-transport`                         | This option is deprecated. Please use NEO4J_TRANSPORT_MODE |
 | `NEO4J_TRANSPORT_MODE`             | `--neo4j-transport-mode`                        | Transport mode: `stdio` or `http`                          | `stdio`
