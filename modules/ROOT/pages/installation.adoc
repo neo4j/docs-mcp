@@ -2,10 +2,10 @@
 = Installation
 :description: This section describes the installation of Neo4j MCP.
 
-== Quickstart with Homebrew (Mac only):
+== Install with PyPI
 [source, bash]
 ----
-brew install neo4j-mcp
+pip install neo4j-mcp-server
 ----
 
 == Manually install the server
