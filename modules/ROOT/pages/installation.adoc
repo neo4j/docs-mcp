@@ -14,6 +14,20 @@ pip install neo4j-mcp-server
 brew install neo4j-mcp
 ----
 
+[NOTE]
+====
+If you use homebrew to install, the server configuration in `servers` (_mcp.json_, for VSCode) or `mcpServers` (_claude_desktop_config.json_, Claude Desktop) must be:
+
+[source, json]
+----
+...
+"command": "neo4j-mcp",
+...
+----
+
+and without the extra argument.
+====
+
 == Manually install the server
 
 Visit the release page for Neo4j MCP: https://github.com/neo4j/mcp/releases
@@ -48,7 +62,7 @@ This should print the installed version.
 
 == Configure VSCode (MCP)
 
-Create / edit `mcp.json`:
+Create / edit _mcp.json_:
 
 [source, json]
 ----
@@ -56,7 +70,8 @@ Create / edit `mcp.json`:
   "servers": {
     "neo4j": {
       "type": "stdio",
-      "command": "neo4j-mcp",
+      "command": "python",
+      "args": ["-m", "neo4j_mcp_server"],
       "env": {
         "NEO4J_URI": "bolt://localhost:7687",
         "NEO4J_USERNAME": "neo4j",
@@ -89,8 +104,9 @@ Alternatively, you can use command-line flags in the `args` array to override en
   "servers": {
     "neo4j": {
       "type": "stdio",
-      "command": "neo4j-mcp",
+      "command": "python",
       "args": [
+        "-m", "neo4j_mcp_server",
         "--neo4j-uri", "bolt://localhost:7687",
         "--neo4j-username", "neo4j",
         "--neo4j-password", "password",
@@ -138,7 +154,7 @@ Find the files at:
 
 Make sure to create the file if it doesn't exist.
 
-Add the `neo4j-mcp` MCP in the `mcpServers` key:
+Add the `python` command and the `neo4j_mcp_server` argument in the `mcpServers` key:
 
 [source, json]
 ----
@@ -146,8 +162,8 @@ Add the `neo4j-mcp` MCP in the `mcpServers` key:
   "mcpServers": {
     "neo4j-mcp": {
       "type": "stdio",
-      "command": "neo4j-mcp",
-      "args": [],
+      "command": "python",
+      "args": ["-m", "neo4j_mcp_server"],
       "env": {
         "NEO4J_URI": "bolt://localhost:7687",
         "NEO4J_USERNAME": "neo4j",
@@ -180,8 +196,9 @@ Alternatively, you can use command-line flags in the `args` array:
   "mcpServers": {
     "neo4j-mcp": {
       "type": "stdio",
-      "command": "neo4j-mcp",
+      "command": "python",
       "args": [
+        "-m", "neo4j_mcp_server",
         "--neo4j-uri", "bolt://localhost:7687",
         "--neo4j-username", "neo4j",
         "--neo4j-password", "password",
