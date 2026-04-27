@@ -3,12 +3,14 @@
 * xref:index.adoc[]
 * xref:quickstart.adoc[]
 * xref:tools.adoc[]
+* xref:security.adoc[]
 
 * *Setup*
 
 * xref:installation.adoc[]
-* xref:configuration.adoc[]
+* xref:client-configuration.adoc[]
 * xref:authentication.adoc[]
+* xref:configuration.adoc[]
 * xref:startup-checks.adoc[]
 * xref:mcpb.adoc[]
 

@@ -1,6 +1,6 @@
 [[index]]
 = Introduction
-:page-aliases: usage.adoc
+:page-aliases: usage.adoc, tls-setup.adoc
 :description: This section describes Neo4j MCP.
 
 Neo4j MCP gives AI assistants and LLM-powered tools direct, structured access to your Neo4j graph database.

@@ -1,5 +1,5 @@
 [[configuration]]
-= Configuration
+= Configuration reference
 
 `neo4j-mcp` requires explicit configuration to connect to your Neo4j instance.
 Configuration can be provided through environment variables or command-line flags.
