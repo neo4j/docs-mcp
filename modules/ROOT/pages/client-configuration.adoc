@@ -4,6 +4,11 @@
 
 Create / edit _mcp.json_:
 
+[.tabbed-example]
+====
+[.Installation with PyPI]
+=====
+
 [source, json]
 ----
 {
@@ -28,6 +33,38 @@ Create / edit _mcp.json_:
 }
 ----
 
+=====
+[.Installation with brew]
+=====
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USERNAME": "neo4j",
+        "NEO4J_PASSWORD": "password",
+        "NEO4J_DATABASE": "neo4j",
+        "NEO4J_READ_ONLY": "true",
+        "NEO4J_TELEMETRY": "false",
+        "NEO4J_LOG_LEVEL": "info",
+        "NEO4J_LOG_FORMAT": "text",
+        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
+      }
+    }
+  }
+}
+----
+
+=====
+====
+
+
+
 Also see link:https://code.visualstudio.com/docs/copilot/customization/mcp-servers[Add and manage MCP servers in VS Code].
 
 [NOTE]
@@ -39,6 +76,12 @@ The server fails to start if any of these are missing.
 Set environment variables in the `env` object as shown above.
 
 Alternatively, you can use command-line flags in the `args` array to override environment variables:
+
+
+[.tabbed-example]
+====
+[.Installation with PyPI]
+=====
 
 [source, json]
 ----
@@ -66,21 +109,39 @@ Alternatively, you can use command-line flags in the `args` array to override en
 }
 ----
 
+=====
+[.Installation with brew]
+=====
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "args": [
+        "--neo4j-uri", "bolt://localhost:7687",
+        "--neo4j-username", "neo4j",
+        "--neo4j-password", "password",
+        "--neo4j-database", "neo4j",
+        "--neo4j-telemetry": "false",
+        "--neo4j-log-level": "info",
+        "--neo4j-log-format": "text",
+        "--neo4j-schema-sample-size": "100"
+      ],
+      "env": {
+        "NEO4J_READ_ONLY": "true"
+      }
+    }
+  }
+}
+----
+
+=====
+====
+
 Restart VSCode; open Copilot Chat and prompt "List Neo4j MCP tools" to confirm.
-
-=== HTTP mode configuration
-
-Use either xref:authentication.adoc#_bearer_token_authentication[Bearer token authentication] or xref:authentication.adoc#_basic_authentication[Basic authentication].
-
-[NOTE]
-====
-For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes] and xref:configuration.adoc[Configuration] sections.
-====
-
-Restart VSCode.
-Open Copilot Chat and make sure that the prompt "List Neo4j MCP tools" returns expected results.
-
-Also refer to link:https://code.visualstudio.com/docs/copilot/customization/mcp-servers[VSCode Copilot docs].
 
 
 == Claude Desktop configuration
@@ -98,6 +159,11 @@ Make sure to create the file if it doesn't exist.
 
 Add the `python` command and the `neo4j_mcp_server` argument in the `mcpServers` key:
 
+[.tabbed-example]
+====
+[.Installation with PyPI]
+=====
+
 [source, json]
 ----
 {
@@ -122,6 +188,36 @@ Add the `python` command and the `neo4j_mcp_server` argument in the `mcpServers`
 }
 ----
 
+=====
+[.Installation with brew]
+=====
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-mcp": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USERNAME": "neo4j",
+        "NEO4J_PASSWORD": "password",
+        "NEO4J_DATABASE": "neo4j",
+        "NEO4J_READ_ONLY": "true",
+        "NEO4J_TELEMETRY": "false",
+        "NEO4J_LOG_LEVEL": "info",
+        "NEO4J_LOG_FORMAT": "text",
+        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
+      }
+    }
+  }
+}
+----
+
+=====
+====
+
 [NOTE]
 ====
 The first three environment variables (`NEO4J_URI`, `NEO4J_USERNAME` and `NEO4J_PASSWORD`) are required.
@@ -131,6 +227,11 @@ The server fails to start if any of these are missing.
 Set environment variables in the `env` object as shown above.
 
 Alternatively, you can use command-line flags in the `args` array:
+
+[.tabbed-example]
+====
+[.Installation with PyPI]
+=====
 
 [source, json]
 ----
@@ -158,6 +259,38 @@ Alternatively, you can use command-line flags in the `args` array:
 }
 ----
 
+=====
+[.Installation with brew]
+=====
+
+[source, json]
+----
+{
+  "mcpServers": {
+    "neo4j-mcp": {
+      "type": "stdio",
+      "command": "neo4j-mcp",
+      "args": [
+        "--neo4j-uri", "bolt://localhost:7687",
+        "--neo4j-username", "neo4j",
+        "--neo4j-password", "password",
+        "--neo4j-database", "neo4j",
+        "--neo4j-telemetry": "false",
+        "--neo4j-log-level": "info",
+        "--neo4j-log-format": "text",
+        "--neo4j-schema-sample-size": "100"
+      ],
+      "env": {
+        "NEO4J_READ_ONLY": "true"
+      }
+    }
+  }
+}
+----
+
+=====
+====
+
 Notes:
 
 - Command-line flags (in `args`) take precedence over environment variables (in `env`).
@@ -165,20 +298,3 @@ Notes:
 - Neo4j Desktop example URI: `bolt://localhost:7687`.
 - For Aura, use the connection string from the Aura Console.
 - All connection parameters (URI, username, password) are required for STDIO mode and have no default values.
-
-=== HTTP mode configuration
-
-Edit your Claude Desktop configuration file:
-
-**Location:**
-
-- MacOS/Linux: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json` (your config location may vary)
-
-Use either xref:authentication.adoc#_bearer_token_authentication[Bearer token authentication] or xref:authentication.adoc#_basic_authentication[Basic authentication].
-
-[NOTE]
-====
-For HTTP mode configuration, TLS/HTTPS setup, and detailed transport mode documentation, see xref:configuration.adoc#transport-modes[Transport modes] and xref:configuration.adoc[Configuration] sections.
-====
-

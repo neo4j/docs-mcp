@@ -14,20 +14,6 @@ pip install neo4j-mcp-server
 brew install neo4j-mcp
 ----
 
-[NOTE]
-====
-If you use homebrew to install, the server configuration in `servers` (_mcp.json_, for VSCode) or `mcpServers` (_claude_desktop_config.json_, Claude Desktop) must be:
-
-[source, json]
-----
-...
-"command": "neo4j-mcp",
-...
-----
-
-and without the extra argument.
-====
-
 == Manual server installation
 
 Visit the release page for Neo4j MCP: https://github.com/neo4j/mcp/releases
