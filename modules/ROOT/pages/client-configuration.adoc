@@ -6,9 +6,8 @@ Create / edit _mcp.json_:
 
 [.tabbed-example]
 ====
-[.Installation with PyPI]
+[.include-with-installation-with-PyPI]
 =====
-
 [source, json]
 ----
 {
@@ -32,11 +31,9 @@ Create / edit _mcp.json_:
   }
 }
 ----
-
 =====
-[.Installation with brew]
+[.include-with-installation-with-brew]
 =====
-
 [source, json]
 ----
 {
@@ -59,7 +56,6 @@ Create / edit _mcp.json_:
   }
 }
 ----
-
 =====
 ====
 
@@ -80,7 +76,7 @@ Alternatively, you can use command-line flags in the `args` array to override en
 
 [.tabbed-example]
 ====
-[.Installation with PyPI]
+[.include-with-installation-with-PyPI]
 =====
 
 [source, json]
@@ -110,7 +106,7 @@ Alternatively, you can use command-line flags in the `args` array to override en
 ----
 
 =====
-[.Installation with brew]
+[.include-with-installation-with-brew]
 =====
 
 [source, json]
@@ -161,7 +157,7 @@ Add the `python` command and the `neo4j_mcp_server` argument in the `mcpServers`
 
 [.tabbed-example]
 ====
-[.Installation with PyPI]
+[.include-with-installation-with-PyPI]
 =====
 
 [source, json]
@@ -189,7 +185,7 @@ Add the `python` command and the `neo4j_mcp_server` argument in the `mcpServers`
 ----
 
 =====
-[.Installation with brew]
+[.include-with-installation-with-brew]
 =====
 
 [source, json]
@@ -230,7 +226,7 @@ Alternatively, you can use command-line flags in the `args` array:
 
 [.tabbed-example]
 ====
-[.Installation with PyPI]
+[.include-with-installation-with-PyPI]
 =====
 
 [source, json]
@@ -260,7 +256,7 @@ Alternatively, you can use command-line flags in the `args` array:
 ----
 
 =====
-[.Installation with brew]
+[.include-with-installation-with-brew]
 =====
 
 [source, json]
