@@ -116,9 +116,23 @@ Example with custom header `X-Test-Auth`:
 export NEO4J_TRANSPORT_MODE="http"
 export NEO4J_HTTP_AUTH_HEADER_NAME="X-Test-Auth"
 neo4j-mcp
-# Then send requests like:
-# -H "X-Test-Auth: Bearer your-sso-token-here"
-# or use -H "X-Test-Auth: Basic <base64>"
+----
+
+Then configure your MCP client to send the custom header, for example in `mcp.json`:
+
+[source, json]
+----
+{
+  "servers": {
+    "neo4j-http": {
+      "type": "http",
+      "url": "http://127.0.0.1:80/mcp",
+      "headers": {
+        "X-Test-Auth": "Bearer <your-sso-token-here>"
+      }
+    }
+  }
+}
 ----
 
 == Troubleshooting authentication
