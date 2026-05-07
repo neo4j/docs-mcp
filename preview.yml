@@ -52,7 +52,7 @@ asciidoc:
     nonhtmloutput: ""
     experimental: ''
     # update the copyright value with the first commit in a new year
-    copyright: 2025
+    copyright: 2026
     # icon attributes 
     check-mark: icon:check[]
     cross-mark: icon:times[]
