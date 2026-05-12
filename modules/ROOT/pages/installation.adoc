@@ -29,12 +29,13 @@ chmod +x neo4j-mcp
 sudo mv neo4j-mcp /usr/local/bin/
 ----
 
-Windows (PowerShell or cmd):
+Windows:
 
-[source, shell]
-----
-move neo4j-mcp.exe C:\Windows\System32
-----
+. Create a folder for the binary, for example `%LOCALAPPDATA%\Programs\neo4j-mcp`.
+. Move `neo4j-mcp.exe` into that folder.
+. Add the folder to your PATH: search for *Edit environment variables for your account* in the Start menu, select `Path` under *User variables*, click *Edit*, then *New*, and paste the folder path.
+
+Restart your terminal session for the PATH change to take effect.
 
 Verify the neo4j-mcp installation:
 
