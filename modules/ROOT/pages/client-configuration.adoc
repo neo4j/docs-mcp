@@ -6,6 +6,15 @@ Create / edit _mcp.json_:
 
 [.tabbed-example]
 ====
+[.include-with-aura-MCP]
+=====
+[source, json]
+----
+{
+
+}
+----
+=====
 [.include-with-installation-with-PyPI]
 =====
 [source, json]
@@ -76,6 +85,15 @@ Alternatively, you can use command-line flags in the `args` array to override en
 
 [.tabbed-example]
 ====
+[.include-with-aura-MCP]
+=====
+[source, json]
+----
+{
+
+}
+----
+=====
 [.include-with-installation-with-PyPI]
 =====
 
@@ -157,6 +175,15 @@ Add the `python` command and the `neo4j_mcp_server` argument in the `mcpServers`
 
 [.tabbed-example]
 ====
+[.include-with-aura-MCP]
+=====
+[source, json]
+----
+{
+
+}
+----
+=====
 [.include-with-installation-with-PyPI]
 =====
 
@@ -226,6 +253,15 @@ Alternatively, you can use command-line flags in the `args` array:
 
 [.tabbed-example]
 ====
+[.include-with-aura-MCP]
+=====
+[source, json]
+----
+{
+
+}
+----
+=====
 [.include-with-installation-with-PyPI]
 =====
 
