@@ -9,15 +9,19 @@ pip install neo4j-mcp-server
 For a more comprehensive installation guide, see xref:installation.adoc[].
 
 
-== Configuration for Aura MCP
+== Configuration for Aura MCP (VSCode)
 
 // blurp.
 
 To connect to Aura MCP:
 
 . Retrieve the project ID and the instance ID of your Aura project and the instance in that project that you would like to use with Neo4j MCP.
-//+
-// Add Aura screenshots?
++
+.Aura project ID
+image::project-id.png[Aura project ID]
++
+.Aura instance ID
+image::instance-id.png[Aura instance ID]
 +
 . The Aura MCP URL is: `https://<INSTANCE_ID>-.mcp-instances.neo4j.io/db/neo4j/mcp`.
 
@@ -25,8 +29,14 @@ Create / edit `mcp.json`:
 
 ```json
 {
-
+  "servers": {
+    "neo4j-mcp": {
+      "type": "http",
+      "url": "https://<instance-id>.mcp-instances.neo4j.io/db/neo4j/mcp/"
+    }
+  }
 }
+```
 
 
 == Server configuration (VSCode)

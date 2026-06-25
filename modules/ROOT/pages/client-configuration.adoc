@@ -84,7 +84,7 @@ The server fails to start if any of these are missing.
 
 Set environment variables in the `env` object as shown above.
 
-Alternatively, you can use command-line flags in the `args` array to override environment variables:
+For PyPI and brew, you can alternatively use command-line flags in the `args` array to override environment variables:
 
 
 [.tabbed-example]
@@ -251,7 +251,7 @@ The server fails to start if any of these are missing.
 
 Set environment variables in the `env` object as shown above.
 
-Alternatively, you can use command-line flags in the `args` array:
+For PyPI and brew, you can alternatively use command-line flags in the `args` array:
 
 [.tabbed-example]
 ====
