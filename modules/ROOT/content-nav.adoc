@@ -12,7 +12,6 @@
 * xref:authentication.adoc[]
 * xref:configuration.adoc[]
 * xref:startup-checks.adoc[]
-* xref:mcpb.adoc[]
 
 * *Monitoring*
 
