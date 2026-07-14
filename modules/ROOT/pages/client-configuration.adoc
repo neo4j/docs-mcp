@@ -14,7 +14,7 @@ Create / edit _mcp.json_:
   "servers": {
     "neo4j-mcp": {
       "type": "http",
-      "url": "https://<instance-id>.mcp-instances.neo4j.io/db/neo4j/mcp/"
+      "url": "https://<instance-id>.mcp-instances.neo4j.io"
     }
   }
 }
@@ -179,7 +179,7 @@ Add the `python` command and the `neo4j_mcp_server` argument in the `mcpServers`
       "command": "npx",
       "args": [
         "mcp-remote",
-        "https://<instance-id>.mcp-instances.neo4j.io/db/neo4j/mcp/"
+        "https://<instance-id>.mcp-instances.neo4j.io"
       ]
     }
   }
