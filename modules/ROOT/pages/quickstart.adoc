@@ -18,7 +18,7 @@ To connect to Aura MCP:
 .Aura instance ID
 image::instance-id.png[Aura instance ID]
 +
-. The Aura MCP URL is: `https://<INSTANCE_ID>-.mcp-instances.neo4j.io`.
+. The Aura MCP URL is: `https://<INSTANCE_ID>.mcp-instances.neo4j.io`.
 +
 [NOTE]
 ====
