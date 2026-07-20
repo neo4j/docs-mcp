@@ -23,8 +23,11 @@ image::instance-id.png[Aura instance ID]
 [NOTE]
 ====
 The MCP URL is not to be confused with the connection nor the query API URLs.
-Under **Instances** from the left side navigation, you can find it via the more menu **`[...]`** and **Inspect** for the instance. 
+Under **Instances** from the left side navigation, you can find it via the more menu **`[...]`** and **Inspect** for the instance.
 ====
++
+.MCP URL in the instance details panel
+image::mcp-url-inspect.png[MCP URL in the instance details panel]
 
 Create / edit `mcp.json`:
 
