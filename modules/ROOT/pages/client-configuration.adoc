@@ -6,7 +6,7 @@ Create / edit _mcp.json_:
 
 [.tabbed-example]
 ====
-[.include-with-aura-MCP]
+[.include-with-MCP-for-Aura]
 =====
 [source, json]
 ----
