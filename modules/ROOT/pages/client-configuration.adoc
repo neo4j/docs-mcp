@@ -6,13 +6,27 @@ Create / edit _mcp.json_:
 
 [.tabbed-example]
 ====
+[.include-with-MCP-for-Aura]
+=====
+[source, json]
+----
+{
+  "servers": {
+    "neo4j-mcp": {
+      "type": "http",
+      "url": "https://<instance-id>.mcp-instances.neo4j.io"
+    }
+  }
+}
+----
+=====
 [.include-with-installation-with-PyPI]
 =====
 [source, json]
 ----
 {
   "servers": {
-    "neo4j": {
+    "neo4j-mcp": {
       "type": "stdio",
       "command": "python",
       "args": ["-m", "neo4j_mcp_server"],
@@ -38,7 +52,7 @@ Create / edit _mcp.json_:
 ----
 {
   "servers": {
-    "neo4j": {
+    "neo4j-mcp": {
       "type": "stdio",
       "command": "neo4j-mcp",
       "env": {
@@ -60,7 +74,6 @@ Create / edit _mcp.json_:
 ====
 
 
-
 Also see link:https://code.visualstudio.com/docs/copilot/customization/mcp-servers[Add and manage MCP servers in VS Code].
 
 [NOTE]
@@ -71,14 +84,13 @@ The server fails to start if any of these are missing.
 
 Set environment variables in the `env` object as shown above.
 
-Alternatively, you can use command-line flags in the `args` array to override environment variables:
+For PyPI and brew, you can alternatively use command-line flags in the `args` array to override environment variables:
 
 
 [.tabbed-example]
 ====
 [.include-with-installation-with-PyPI]
 =====
-
 [source, json]
 ----
 {
@@ -113,7 +125,7 @@ Alternatively, you can use command-line flags in the `args` array to override en
 ----
 {
   "servers": {
-    "neo4j": {
+    "neo4j-mcp": {
       "type": "stdio",
       "command": "neo4j-mcp",
       "args": [
@@ -157,6 +169,23 @@ Add the `python` command and the `neo4j_mcp_server` argument in the `mcpServers`
 
 [.tabbed-example]
 ====
+[.include-with-aura-MCP]
+=====
+[source, json]
+----
+{
+  "servers": {
+    "neo4j-mcp": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://<instance-id>.mcp-instances.neo4j.io"
+      ]
+    }
+  }
+}
+----
+=====
 [.include-with-installation-with-PyPI]
 =====
 
@@ -222,7 +251,7 @@ The server fails to start if any of these are missing.
 
 Set environment variables in the `env` object as shown above.
 
-Alternatively, you can use command-line flags in the `args` array:
+For PyPI and brew, you can alternatively use command-line flags in the `args` array:
 
 [.tabbed-example]
 ====
