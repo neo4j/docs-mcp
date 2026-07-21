@@ -1,15 +1,6 @@
 = Quickstart
 
-== Installation
-
-```bash
-pip install neo4j-mcp-server
-```
-
-For a more comprehensive installation guide, see xref:installation.adoc[].
-
-
-== Configuration for MCP for Aura (VSCode)
+== MCP for Aura (VSCode)
 
 To connect to MCP for Aura:
 
@@ -43,7 +34,17 @@ Create / edit `mcp.json`:
 ```
 
 
-== Server configuration (VSCode)
+== Self Hosted (VSCode)
+
+=== Installation
+
+```bash
+pip install neo4j-mcp-server
+```
+
+For a more comprehensive installation guide, see xref:installation.adoc[].
+
+=== Configuration (VSCode)
 
 Create / edit `mcp.json`:
 
