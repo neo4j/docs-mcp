@@ -17,7 +17,7 @@ claude mcp add --transport http neo4j-mcp https://<instance-id>.mcp-instances.ne
 =====
 [.include-with-STDIO-with-executable]
 =====
-NOTE: This requires the Neo4j MCP server executable to be available on your system, installed using one of these options: xref:installation.adoc#_install_with_homebrew[Homebrew] or xref:installation.adoc#_manual_server_installation[manual installation].
+include::partial$note-stdio-executable.adoc[]
 
 [source, bash]
 ----
@@ -32,9 +32,7 @@ claude mcp add neo4j-mcp \
 =====
 [.include-with-STDIO-with-PyPI]
 =====
-NOTE: This requires the Neo4j MCP server to have been installed using PyPI. See xref:installation.adoc#_install_with_pypi[Install with PyPI].
-
-NOTE: On some systems the Python 3 interpreter is named `python3` instead of `python` - use whichever is available in your environment.
+include::partial$note-stdio-pypi.adoc[]
 
 [source, bash]
 ----
@@ -75,7 +73,7 @@ Create / edit _mcp.json_:
 =====
 [.include-with-STDIO-with-executable]
 =====
-NOTE: This requires the Neo4j MCP server executable to be available on your system, installed using one of these options: xref:installation.adoc#_install_with_homebrew[Homebrew] or xref:installation.adoc#_manual_server_installation[manual installation].
+include::partial$note-stdio-executable.adoc[]
 
 [source, json]
 ----
@@ -102,9 +100,7 @@ NOTE: This requires the Neo4j MCP server executable to be available on your syst
 =====
 [.include-with-STDIO-with-PyPI]
 =====
-NOTE: This requires the Neo4j MCP server to have been installed using PyPI. See xref:installation.adoc#_install_with_pypi[Install with PyPI].
-
-NOTE: On some systems the Python 3 interpreter is named `python3` instead of `python` - use whichever is available in your environment.
+include::partial$note-stdio-pypi.adoc[]
 
 [source, json]
 ----
@@ -159,7 +155,7 @@ See link:https://cursor.com/docs/mcp[Model Context Protocol] in the Cursor docum
 =====
 [.include-with-STDIO-with-executable]
 =====
-NOTE: This requires the Neo4j MCP server executable to be available on your system, installed using one of these options: xref:installation.adoc#_install_with_homebrew[Homebrew] or xref:installation.adoc#_manual_server_installation[manual installation].
+include::partial$note-stdio-executable.adoc[]
 
 [source, json]
 ----
@@ -185,9 +181,7 @@ NOTE: This requires the Neo4j MCP server executable to be available on your syst
 =====
 [.include-with-STDIO-with-PyPI]
 =====
-NOTE: This requires the Neo4j MCP server to have been installed using PyPI. See xref:installation.adoc#_install_with_pypi[Install with PyPI].
-
-NOTE: On some systems the Python 3 interpreter is named `python3` instead of `python` - use whichever is available in your environment.
+include::partial$note-stdio-pypi.adoc[]
 
 [source, json]
 ----
@@ -251,7 +245,7 @@ NOTE: This requires `npx` to be available on your system, which is included with
 =====
 [.include-with-STDIO-with-executable]
 =====
-NOTE: This requires the Neo4j MCP server executable to be available on your system, installed using one of these options: xref:installation.adoc#_install_with_homebrew[Homebrew] or xref:installation.adoc#_manual_server_installation[manual installation].
+include::partial$note-stdio-executable.adoc[]
 
 [source, json]
 ----
@@ -279,9 +273,7 @@ NOTE: This requires the Neo4j MCP server executable to be available on your syst
 =====
 [.include-with-STDIO-with-PyPI]
 =====
-NOTE: This requires the Neo4j MCP server to have been installed using PyPI. See xref:installation.adoc#_install_with_pypi[Install with PyPI].
-
-NOTE: On some systems the Python 3 interpreter is named `python3` instead of `python` - use whichever is available in your environment.
+include::partial$note-stdio-pypi.adoc[]
 
 [source, json]
 ----
