@@ -1,0 +1,28 @@
+= MCP for Aura
+
+Neo4j MCP for Aura is a hosted MCP server for your Aura instances.
+Each instance exposes its own MCP server URL, which you connect to over HTTP from your MCP client.
+
+[#find-your-mcp-server-url]
+== Find your MCP server URL
+
+To find the MCP server URL for your Aura instance:
+
+. Retrieve the Aura instance ID you would like to use with Neo4j MCP, for example:
++
+.Aura instance ID
+image::instance-id.png[Aura instance ID]
++
+. The MCP for Aura URL is: `https://<INSTANCE_ID>.mcp-instances.neo4j.io`.
++
+[NOTE]
+====
+The MCP URL is not to be confused with the connection nor the query API URLs.
+Under **Instances** from the left side navigation, you can find it via the more menu **`[...]`** and **Inspect** for the instance.
+====
++
+.MCP URL in the instance details panel
+image::mcp-url-inspect.png[MCP URL in the instance details panel]
+
+Once you have the URL, add Neo4j MCP to your client.
+See xref:client-configuration.adoc[] for client-specific configuration.

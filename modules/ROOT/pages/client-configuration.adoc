@@ -9,6 +9,7 @@ See link:https://code.claude.com/docs/en/mcp[Connect Claude Code to tools via MC
 ====
 [.include-with-MCP-for-Aura]
 =====
+include::partial$note-find-aura-url.adoc[]
 
 [source, bash]
 ----
@@ -59,6 +60,8 @@ Create / edit _mcp.json_:
 ====
 [.include-with-MCP-for-Aura]
 =====
+include::partial$note-find-aura-url.adoc[]
+
 [source, json]
 ----
 {
@@ -141,6 +144,7 @@ See link:https://cursor.com/docs/mcp[Model Context Protocol] in the Cursor docum
 ====
 [.include-with-MCP-for-Aura]
 =====
+include::partial$note-find-aura-url.adoc[]
 
 [source, json]
 ----
@@ -226,6 +230,8 @@ Add Neo4j MCP under the `mcpServers` key:
 ====
 [.include-with-MCP-for-Aura]
 =====
+include::partial$note-find-aura-url.adoc[]
+
 NOTE: This requires `npx` to be available on your system, which is included with Node.js. See link:https://nodejs.org/en/download[Download Node.js] for installation instructions.
 
 [source, json]
