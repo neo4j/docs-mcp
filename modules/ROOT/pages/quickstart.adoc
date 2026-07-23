@@ -1,6 +1,6 @@
 = Quickstart
 
-== MCP for Aura (VSCode)
+== MCP for Aura
 
 To connect to MCP for Aura:
 
@@ -20,7 +20,7 @@ Under **Instances** from the left side navigation, you can find it via the more 
 .MCP URL in the instance details panel
 image::mcp-url-inspect.png[MCP URL in the instance details panel]
 
-Create / edit `mcp.json`:
+Then add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`:
 
 ```json
 {
@@ -33,8 +33,10 @@ Create / edit `mcp.json`:
 }
 ```
 
+See xref:client-configuration.adoc[] for other client-specific configuration.
 
-== Self Hosted (VSCode)
+
+== Self hosted
 
 === Installation
 
@@ -44,9 +46,14 @@ pip install neo4j-mcp-server
 
 For a more comprehensive installation guide, see xref:installation.adoc[].
 
-=== Configuration (VSCode)
+=== Configuration
 
-Create / edit `mcp.json`:
+Add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`:
+
+[NOTE]
+====
+On some systems the Python 3 interpreter is named `python3` instead of `python` - use whichever is available in your environment.
+====
 
 ```json
 {
@@ -71,5 +78,4 @@ Create / edit `mcp.json`:
 }
 ```
 
-See xref:configuration.adoc[] for more details.
-
+See xref:client-configuration.adoc[] for other client-specific configuration and xref:configuration.adoc[] for the full list of configuration options.
