@@ -3,6 +3,7 @@
 
 `neo4j-mcp` requires explicit configuration to connect to your Neo4j instance.
 Configuration can be provided through environment variables or command-line flags.
+When both are set for the same option, the command-line flag takes precedence over the environment variable.
 
 [[transport-modes]]
 == Transport modes
@@ -82,8 +83,3 @@ Configure TLS for secure HTTPS connections in HTTP mode:
 | `NEO4J_MCP_HTTP_TLS_CERT_FILE` | `--neo4j-http-tls-cert-file` | Path to TLS certificate file | _Required if TLS enabled_
 | `NEO4J_MCP_HTTP_TLS_KEY_FILE`  | `--neo4j-http-tls-key-file`  | Path to TLS private key file | _Required if TLS enabled_
 |===
-
-[NOTE]
-====
-Command-line flags take precedence over environment variables.
-====
