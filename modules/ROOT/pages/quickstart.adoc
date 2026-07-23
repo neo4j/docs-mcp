@@ -2,9 +2,10 @@
 
 == MCP for Aura
 
-Retrieve your instance's MCP server URL — see xref:mcp-for-aura.adoc#find-your-mcp-server-url[Find your MCP server URL].
+Retrieve your instance's MCP server URL, see xref:mcp-for-aura.adoc#find-your-mcp-server-url[Find your MCP server URL].
 
-Then add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`:
+Then add Neo4j MCP to your client's MCP configuration.
+For example, in VS Code, create or edit `mcp.json`:
 
 ```json
 {
@@ -36,7 +37,8 @@ Add Neo4j MCP to your client's MCP configuration. For example, in VS Code, creat
 
 [NOTE]
 ====
-On some systems the Python 3 interpreter is named `python3` instead of `python` - use whichever is available in your environment.
+On some systems the Python 3 interpreter is named `python3` instead of `python`
+Use whichever is available in your environment.
 ====
 
 ```json

@@ -21,7 +21,7 @@ There are two ways to find the MCP server URL for your Aura instance.
 .Aura instance ID
 image::instance-id.png[Aura instance ID]
 +
-. Substitute the ID into the following template to get your MCP server URL: `\https://<INSTANCE_ID>.mcp-instances.neo4j.io`.
+. Substitute the ID in the following template to get your MCP server URL: `\https://<INSTANCE_ID>.mcp-instances.neo4j.io`.
 
 === Option 2: Copy the URL from the instance details
 
