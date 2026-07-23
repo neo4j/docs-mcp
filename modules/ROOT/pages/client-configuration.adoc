@@ -233,10 +233,10 @@ Add Neo4j MCP under the `mcpServers` key:
 include::partial$note-find-aura-url.adoc[]
 
 [NOTE]
-====
+======
 This requires `npx` to be available on your system, which is included with Node.js.
 See link:https://nodejs.org/en/download[Download Node.js] for installation instructions.
-====
+======
 
 [source, json]
 ----
