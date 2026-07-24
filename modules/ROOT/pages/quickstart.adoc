@@ -5,7 +5,7 @@
 First, retrieve your instance's MCP server URL:
 
 . Under **Instances** in the left side navigation of the Aura Console, retrieve the ID of the Aura instance you would like to use with Neo4j MCP.
-. Substitute the ID into the following template to get your MCP server URL: `\https://<INSTANCE_ID>.mcp-instances.neo4j.io`.
+. Substitute the ID in the following template to get your MCP server URL: `\https://<INSTANCE_ID>.mcp-instances.neo4j.io`.
 
 For a visual walkthrough, or to copy the URL directly from the instance details, see xref:mcp-for-aura.adoc#find-your-mcp-server-url[Find your MCP server URL].
 
