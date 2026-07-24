@@ -1,26 +1,16 @@
 = Quickstart
 
-== MCP for Aura (VSCode)
+== MCP for Aura
 
-To connect to MCP for Aura:
+First, retrieve your instance's MCP server URL:
 
-. Retrieve the Aura instance ID you would like to use with Neo4j MCP, for example:
-+
-.Aura instance ID
-image::instance-id.png[Aura instance ID]
-+
-. The MCP for Aura URL is: `https://<INSTANCE_ID>.mcp-instances.neo4j.io`.
-+
-[NOTE]
-====
-The MCP URL is not to be confused with the connection nor the query API URLs.
-Under **Instances** from the left side navigation, you can find it via the more menu **`[...]`** and **Inspect** for the instance.
-====
-+
-.MCP URL in the instance details panel
-image::mcp-url-inspect.png[MCP URL in the instance details panel]
+. Under **Instances** in the left side navigation of the Aura Console, retrieve the ID of the Aura instance you would like to use with Neo4j MCP.
+. Substitute the ID in the following template to get your MCP server URL: `\https://<INSTANCE_ID>.mcp-instances.neo4j.io`.
 
-Create / edit `mcp.json`:
+For a visual walkthrough, or to copy the URL directly from the instance details, see xref:mcp-for-aura.adoc#find-your-mcp-server-url[Find your MCP server URL].
+
+Then add Neo4j MCP to your client's MCP configuration.
+For example, in VS Code, create or edit `mcp.json`:
 
 ```json
 {
@@ -33,8 +23,10 @@ Create / edit `mcp.json`:
 }
 ```
 
+See xref:client-configuration.adoc[] for other client-specific configuration.
 
-== Self Hosted (VSCode)
+
+== Self hosted
 
 === Installation
 
@@ -44,9 +36,15 @@ pip install neo4j-mcp-server
 
 For a more comprehensive installation guide, see xref:installation.adoc[].
 
-=== Configuration (VSCode)
+=== Configuration
 
-Create / edit `mcp.json`:
+Add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`:
+
+[NOTE]
+====
+On some systems the Python 3 interpreter is named `python3` instead of `python`
+Use whichever is available in your environment.
+====
 
 ```json
 {
@@ -71,5 +69,4 @@ Create / edit `mcp.json`:
 }
 ```
 
-See xref:configuration.adoc[] for more details.
-
+See xref:client-configuration.adoc[] for other client-specific configuration and xref:configuration.adoc[] for the full list of configuration options.
