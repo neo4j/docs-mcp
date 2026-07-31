@@ -6,4 +6,6 @@ nav:
 - modules/ROOT/content-nav.adoc
 asciidoc:
   attributes:
+    page-tabs: tools@
+    page-tabs-index: 100
     page-add-notes-module: ROOT
