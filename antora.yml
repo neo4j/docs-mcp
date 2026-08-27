@@ -1,6 +1,6 @@
 name: mcp
 title: Neo4j MCP
-version: "1"
+version: "2"
 start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/content-nav.adoc
