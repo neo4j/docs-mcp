@@ -135,7 +135,16 @@ The v1 endpoint was:
 POST https://example.com/mcp
 ----
 
-In v2, include the target database name in the URL:
+In v2, include the target database name in the URL.
+Use the following URL format:
+
+[source,bash]
+----
+POST https://example.com/db/{databaseName}/mcp
+----
+
+Replace `databaseName` in this URL with the name of the database you want to connect to.
+For example, the URL for the `neo4j` database is:
 
 [source,bash]
 ----
@@ -173,21 +182,11 @@ In v1, an HTTP server could be configured with a single URI and database at star
 In v2, HTTP mode selects the Neo4j instance and database for each request.
 
 Do not set `NEO4J_MCP_URI`, `NEO4J_MCP_USERNAME`, `NEO4J_MCP_PASSWORD`, or `NEO4J_MCP_DATABASE` in HTTP mode.
-The server refuses to start if these options are set.
-The URI error is:
-
-----
-Neo4j URI should not be set for HTTP transport mode; URI is provided per-request via X-Neo4j-MCP-URI header
-----
-
-The database error is:
-
-----
-NEO4J_MCP_DATABASE … should not be set for HTTP transport mode; database is selected per-request via URL path
-----
+The server refuses to start if these options are set and reports that the URI and credentials must be provided per request, while the database is selected by the URL path.
 
 Every request must include the `X-Neo4j-MCP-URI` header.
 Credentials must be supplied per request using Basic authentication or a Bearer token.
+The database is selected by the URL path, not by an HTTP header.
 See xref:http-mode.adoc[] for the complete HTTP request reference.
 
 For example:
@@ -204,11 +203,7 @@ Authorization: Basic BASE64_ENCODED_CREDENTIALS
 
 The v1 STDIO default database was `neo4j`.
 In v2, set `NEO4J_MCP_DATABASE` or use `--database` explicitly.
-Otherwise startup fails with:
-
-----
-Neo4j database is required for STDIO mode (set NEO4J_MCP_DATABASE or use --database flag)
-----
+Otherwise startup fails and reports that a database is required for STDIO mode.
 
 For example:
 
@@ -228,17 +223,18 @@ For example:
 
 === Requirement checks run at initialize
 
-In v1, connectivity, query execution, and APOC checks ran as startup pre-flight checks.
-In v2, these checks run when the MCP `initialize` request is processed.
+In v1, connectivity, query execution, and APOC checks ran when the server started.
+In v2, the server starts without running these checks.
+They run when the MCP `initialize` request is processed instead, so a failure is reported by `initialize` rather than preventing the server from starting.
 The `initialize` request fails with a descriptive error if the database is unreachable, the configuration is invalid, or APOC is missing.
 APOC must be installed and include the `meta` component.
 
-The `list-gds-procedures` tool is enabled by default and is no longer auto-detected from GDS presence.
-When that tool is enabled for a request, v2 verifies GDS with `gds.version()`.
-If GDS is absent, that check is non-fatal and `initialize` still succeeds.
+GDS detection no longer changes which tools are enabled.
+The `list-gds-procedures` tool is controlled by the configured tool set.
+If the tool is enabled and GDS is not found, the server logs a message and continues; the GDS tool does not work, but the other tools remain available.
 See xref:requirement-checks.adoc[].
 
-== Additions in v2
+== Additions
 
 === Tool filtering
 
