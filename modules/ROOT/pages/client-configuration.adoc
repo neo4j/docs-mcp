@@ -23,11 +23,11 @@ include::partial$note-stdio-executable.adoc[]
 [source, bash]
 ----
 claude mcp add neo4j-mcp \
-  --env NEO4J_URI=bolt://localhost:7687 \
-  --env NEO4J_USERNAME=neo4j \
-  --env NEO4J_PASSWORD=password \
-  --env NEO4J_DATABASE=neo4j \
-  --env NEO4J_READ_ONLY=true \
+  --env NEO4J_MCP_URI=bolt://localhost:7687 \
+  --env NEO4J_MCP_USERNAME=neo4j \
+  --env NEO4J_MCP_PASSWORD=password \
+  --env NEO4J_MCP_DATABASE=neo4j \
+  --env NEO4J_MCP_READ_ONLY=true \
   -- neo4j-mcp
 ----
 =====
@@ -38,11 +38,11 @@ include::partial$note-stdio-pypi.adoc[]
 [source, bash]
 ----
 claude mcp add neo4j-mcp \
-  --env NEO4J_URI=bolt://localhost:7687 \
-  --env NEO4J_USERNAME=neo4j \
-  --env NEO4J_PASSWORD=password \
-  --env NEO4J_DATABASE=neo4j \
-  --env NEO4J_READ_ONLY=true \
+  --env NEO4J_MCP_URI=bolt://localhost:7687 \
+  --env NEO4J_MCP_USERNAME=neo4j \
+  --env NEO4J_MCP_PASSWORD=password \
+  --env NEO4J_MCP_DATABASE=neo4j \
+  --env NEO4J_MCP_READ_ONLY=true \
   -- python -m neo4j_mcp_server
 ----
 =====
@@ -86,15 +86,15 @@ include::partial$note-stdio-executable.adoc[]
       "type": "stdio",
       "command": "neo4j-mcp",
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_USERNAME": "neo4j",
-        "NEO4J_PASSWORD": "password",
-        "NEO4J_DATABASE": "neo4j",
-        "NEO4J_READ_ONLY": "true",
-        "NEO4J_TELEMETRY": "false",
-        "NEO4J_LOG_LEVEL": "info",
-        "NEO4J_LOG_FORMAT": "text",
-        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
+        "NEO4J_MCP_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_USERNAME": "neo4j",
+        "NEO4J_MCP_PASSWORD": "password",
+        "NEO4J_MCP_DATABASE": "neo4j",
+        "NEO4J_MCP_READ_ONLY": "true",
+        "NEO4J_MCP_TELEMETRY": "false",
+        "NEO4J_MCP_LOG_LEVEL": "info",
+        "NEO4J_MCP_LOG_FORMAT": "text",
+        "NEO4J_MCP_SCHEMA_SAMPLE_SIZE": "100"
       }
     }
   }
@@ -114,15 +114,15 @@ include::partial$note-stdio-pypi.adoc[]
       "command": "python",
       "args": ["-m", "neo4j_mcp_server"],
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_USERNAME": "neo4j",
-        "NEO4J_PASSWORD": "password",
-        "NEO4J_DATABASE": "neo4j",
-        "NEO4J_READ_ONLY": "true",
-        "NEO4J_TELEMETRY": "false",
-        "NEO4J_LOG_LEVEL": "info",
-        "NEO4J_LOG_FORMAT": "text",
-        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
+        "NEO4J_MCP_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_USERNAME": "neo4j",
+        "NEO4J_MCP_PASSWORD": "password",
+        "NEO4J_MCP_DATABASE": "neo4j",
+        "NEO4J_MCP_READ_ONLY": "true",
+        "NEO4J_MCP_TELEMETRY": "false",
+        "NEO4J_MCP_LOG_LEVEL": "info",
+        "NEO4J_MCP_LOG_FORMAT": "text",
+        "NEO4J_MCP_SCHEMA_SAMPLE_SIZE": "100"
       }
     }
   }
@@ -168,15 +168,15 @@ include::partial$note-stdio-executable.adoc[]
     "neo4j-mcp": {
       "command": "neo4j-mcp",
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_USERNAME": "neo4j",
-        "NEO4J_PASSWORD": "password",
-        "NEO4J_DATABASE": "neo4j",
-        "NEO4J_READ_ONLY": "true",
-        "NEO4J_TELEMETRY": "false",
-        "NEO4J_LOG_LEVEL": "info",
-        "NEO4J_LOG_FORMAT": "text",
-        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
+        "NEO4J_MCP_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_USERNAME": "neo4j",
+        "NEO4J_MCP_PASSWORD": "password",
+        "NEO4J_MCP_DATABASE": "neo4j",
+        "NEO4J_MCP_READ_ONLY": "true",
+        "NEO4J_MCP_TELEMETRY": "false",
+        "NEO4J_MCP_LOG_LEVEL": "info",
+        "NEO4J_MCP_LOG_FORMAT": "text",
+        "NEO4J_MCP_SCHEMA_SAMPLE_SIZE": "100"
       }
     }
   }
@@ -195,15 +195,15 @@ include::partial$note-stdio-pypi.adoc[]
       "command": "python",
       "args": ["-m", "neo4j_mcp_server"],
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_USERNAME": "neo4j",
-        "NEO4J_PASSWORD": "password",
-        "NEO4J_DATABASE": "neo4j",
-        "NEO4J_READ_ONLY": "true",
-        "NEO4J_TELEMETRY": "false",
-        "NEO4J_LOG_LEVEL": "info",
-        "NEO4J_LOG_FORMAT": "text",
-        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
+        "NEO4J_MCP_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_USERNAME": "neo4j",
+        "NEO4J_MCP_PASSWORD": "password",
+        "NEO4J_MCP_DATABASE": "neo4j",
+        "NEO4J_MCP_READ_ONLY": "true",
+        "NEO4J_MCP_TELEMETRY": "false",
+        "NEO4J_MCP_LOG_LEVEL": "info",
+        "NEO4J_MCP_LOG_FORMAT": "text",
+        "NEO4J_MCP_SCHEMA_SAMPLE_SIZE": "100"
       }
     }
   }
@@ -265,15 +265,15 @@ include::partial$note-stdio-executable.adoc[]
       "type": "stdio",
       "command": "neo4j-mcp",
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_USERNAME": "neo4j",
-        "NEO4J_PASSWORD": "password",
-        "NEO4J_DATABASE": "neo4j",
-        "NEO4J_READ_ONLY": "true",
-        "NEO4J_TELEMETRY": "false",
-        "NEO4J_LOG_LEVEL": "info",
-        "NEO4J_LOG_FORMAT": "text",
-        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
+        "NEO4J_MCP_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_USERNAME": "neo4j",
+        "NEO4J_MCP_PASSWORD": "password",
+        "NEO4J_MCP_DATABASE": "neo4j",
+        "NEO4J_MCP_READ_ONLY": "true",
+        "NEO4J_MCP_TELEMETRY": "false",
+        "NEO4J_MCP_LOG_LEVEL": "info",
+        "NEO4J_MCP_LOG_FORMAT": "text",
+        "NEO4J_MCP_SCHEMA_SAMPLE_SIZE": "100"
       }
     }
   }
@@ -294,15 +294,15 @@ include::partial$note-stdio-pypi.adoc[]
       "command": "python",
       "args": ["-m", "neo4j_mcp_server"],
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_USERNAME": "neo4j",
-        "NEO4J_PASSWORD": "password",
-        "NEO4J_DATABASE": "neo4j",
-        "NEO4J_READ_ONLY": "true",
-        "NEO4J_TELEMETRY": "false",
-        "NEO4J_LOG_LEVEL": "info",
-        "NEO4J_LOG_FORMAT": "text",
-        "NEO4J_SCHEMA_SAMPLE_SIZE": "100"
+        "NEO4J_MCP_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_USERNAME": "neo4j",
+        "NEO4J_MCP_PASSWORD": "password",
+        "NEO4J_MCP_DATABASE": "neo4j",
+        "NEO4J_MCP_READ_ONLY": "true",
+        "NEO4J_MCP_TELEMETRY": "false",
+        "NEO4J_MCP_LOG_LEVEL": "info",
+        "NEO4J_MCP_LOG_FORMAT": "text",
+        "NEO4J_MCP_SCHEMA_SAMPLE_SIZE": "100"
       }
     }
   }
