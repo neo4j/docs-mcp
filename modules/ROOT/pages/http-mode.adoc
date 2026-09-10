@@ -61,7 +61,7 @@ Passwords in Bolt URIs are redacted from error messages.
 
 === Authentication
 
-Supply credentials with Basic authentication or a Bearer token in the `Authorization` header.
+Supply credentials with basic authentication or a bearer token in the `Authorization` header.
 The header name can be changed with `NEO4J_MCP_HTTP_AUTH_HEADER_NAME` or `--http-auth-header-name`.
 See xref:authentication.adoc[] for authentication details.
 
