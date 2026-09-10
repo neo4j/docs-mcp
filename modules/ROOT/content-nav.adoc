@@ -11,8 +11,9 @@
 * xref:installation.adoc[]
 * xref:client-configuration.adoc[]
 * xref:authentication.adoc[]
+* xref:http-mode.adoc[]
 * xref:configuration.adoc[]
-* xref:startup-checks.adoc[]
+* xref:requirement-checks.adoc[]
 
 * *Monitoring*
 
@@ -21,4 +22,5 @@
 
 * *Versions and support*
 
+* xref:migrate-v1-to-v2.adoc[]
 * xref:known-issues.adoc[]

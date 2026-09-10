@@ -33,9 +33,8 @@ A connected client can:
 
 === Optional requirements
 
-If an optional dependency is missing, the server starts in an adaptive mode.
-For instance, if the Graph Data Science (GDS) library is not detected in your Neo4j installation, the server still launches but will automatically disable all GDS-related tools, such as `list-gds-procedures`.
-All other tools remain available.
+The Graph Data Science (GDS) library is optional.
+See xref:requirement-checks.adoc#gds-requirement[GDS requirement] for details.
 
 
 == Examples for natural language prompts

@@ -14,13 +14,14 @@ This method is ideal for:
 
 The bearer token is obtained from your identity provider and passed to Neo4j for authentication.
 The MCP server acts as a pass-through, forwarding the token to Neo4j's authentication system.
+In HTTP mode, also send the `X-Neo4j-MCP-URI` header with every request.
+See xref:http-mode.adoc[] for the complete HTTP request requirements.
 
 . Start your Neo4j MCP server in HTTP mode:
 +
 [source, bash]
 ----
-export NEO4J_URI="bolt://localhost:7687"
-export NEO4j_TRANSPORT_MODE="http"
+export NEO4J_MCP_TRANSPORT_MODE="http"
 neo4j-mcp
 ----
 +
@@ -34,8 +35,9 @@ The server starts on `http://127.0.0.1:80` by default.
   "servers": {
     "neo4j-http-bearer": {
       "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
+      "url": "http://127.0.0.1:80/db/neo4j/mcp",
       "headers": {
+        "X-Neo4j-MCP-URI": "bolt://localhost:7687",
         "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
       }
     }
@@ -58,8 +60,7 @@ Basic authentication with username and password is suitable for:
 +
 [source, bash]
 ----
-export NEO4J_URI="bolt://localhost:7687"
-export NEO4j_TRANSPORT_MODE="http"
+export NEO4J_MCP_TRANSPORT_MODE="http"
 neo4j-mcp
 ----
 +
@@ -73,8 +74,9 @@ The server starts on `http://127.0.0.1:80` by default.
   "servers": {
     "neo4j-http": {
       "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
+      "url": "http://127.0.0.1:80/db/neo4j/mcp",
       "headers": {
+        "X-Neo4j-MCP-URI": "bolt://localhost:7687",
         "Authorization": "Basic BASE64_ENCODED_CREDENTIALS"
       }
     }
@@ -107,7 +109,7 @@ echo -n "neo4j:password" | base64
 
 By default, the server reads credentials from the `Authorization` header.
 Some platforms reserve `Authorization` for their own infrastructure-level signing and require credentials to be sent under a different header name.
-You can override the header the server reads from by setting `NEO4J_HTTP_AUTH_HEADER_NAME` or the `--neo4j-http-auth-header-name` CLI flag.
+You can override the header the server reads from by setting `NEO4J_MCP_HTTP_AUTH_HEADER_NAME` or the `--http-auth-header-name` CLI flag.
 
 Bearer vs Basic detection works the same way regardless of the header name — the server reads the credential value from whatever header you configure.
 
@@ -116,13 +118,13 @@ The configured header name cannot be empty or whitespace.
 [NOTE]
 ====
 AWS Bedrock AgentCore Runtime reserves `Authorization` for request signing.
-Use `NEO4J_HTTP_AUTH_HEADER_NAME=X-Amzn-Bedrock-AgentCore-Runtime-Custom-Authorization` to pass Neo4j credentials through AgentCore without conflicting with AWS signing.
+Use `NEO4J_MCP_HTTP_AUTH_HEADER_NAME=X-Amzn-Bedrock-AgentCore-Runtime-Custom-Authorization` to pass Neo4j credentials through AgentCore without conflicting with AWS signing.
 ====
 
 [source, bash]
 ----
-export NEO4J_TRANSPORT_MODE="http"
-export NEO4J_HTTP_AUTH_HEADER_NAME="X-Amzn-Bedrock-AgentCore-Runtime-Custom-Authorization"
+export NEO4J_MCP_TRANSPORT_MODE="http"
+export NEO4J_MCP_HTTP_AUTH_HEADER_NAME="X-Amzn-Bedrock-AgentCore-Runtime-Custom-Authorization"
 neo4j-mcp
 ----
 
@@ -134,8 +136,9 @@ Then configure your MCP client to send the custom header, for example in `mcp.js
   "servers": {
     "neo4j-http": {
       "type": "http",
-      "url": "http://127.0.0.1:80/mcp",
+      "url": "http://127.0.0.1:80/db/neo4j/mcp",
       "headers": {
+        "X-Neo4j-MCP-URI": "bolt://localhost:7687",
         "X-Amzn-Bedrock-AgentCore-Runtime-Custom-Authorization": "Bearer <your-sso-token-here>"
       }
     }
@@ -148,19 +151,19 @@ Then configure your MCP client to send the custom header, for example in `mcp.js
 By default, all HTTP requests require valid credentials.
 Two options let you selectively bypass authentication for specific request types that some platforms issue before the MCP session is established.
 
-*NEO4J_HTTP_ALLOW_UNAUTHENTICATED_PING (--neo4j-http-allow-unauthenticated-ping, default=false)*:
+*NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING (--http-allow-unauthenticated-ping, default=false)*:
 Allows JSON-RPC `ping` requests through without credentials.
 The MCP spec permits pings before initialization; platforms such as AWS AgentCore Runtime use them as liveness/health checks.
 
-*NEO4J_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST (--neo4j-http-allow-unauthenticated-tools-list, default=false)*:
+*NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST (--http-allow-unauthenticated-tools-list, default=false)*:
 Allows `tools/list` requests through without credentials.
 Useful for discovery endpoints that enumerate available tools before authenticating.
 
 [source, bash]
 ----
-export NEO4J_TRANSPORT_MODE="http"
-export NEO4J_HTTP_ALLOW_UNAUTHENTICATED_PING="true"
-export NEO4J_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST="true"
+export NEO4J_MCP_TRANSPORT_MODE="http"
+export NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING="true"
+export NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST="true"
 neo4j-mcp
 ----
 
@@ -210,8 +213,8 @@ Unauthenticated `tools/list` exposes the list of available tools to any caller w
 
 *No authentication header provided*
 
-- HTTP mode requires authentication on every request unless `NEO4J_HTTP_ALLOW_UNAUTHENTICATED_PING` or `NEO4J_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST` are enabled for specific request types
-- Ensure your MCP client configuration includes the correct authentication header (default: `Authorization`; or the custom header if `NEO4J_HTTP_AUTH_HEADER_NAME` is set)
+- HTTP mode requires authentication on every request unless `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING` or `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST` are enabled for specific request types
+- Ensure your MCP client configuration includes the correct authentication header (default: `Authorization`; or the custom header if `NEO4J_MCP_HTTP_AUTH_HEADER_NAME` is set)
 
 *Connection refused / Cannot reach server*
 
