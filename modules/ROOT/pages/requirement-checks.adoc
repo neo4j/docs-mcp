@@ -26,4 +26,4 @@ See xref:configuration.adoc#transport-modes[Transport modes] and xref:http-mode.
 
 The Graph Data Science (GDS) library is optional.
 If GDS is not found, the server logs a message and continues working.
-GDS-specific tooling, such as `list-gds-procedures`, will not work without GDS, but the other tools remain available.
+GDS-specific tooling, such as `list-gds-procedures`, don't work without GDS, but the other tools remain available.

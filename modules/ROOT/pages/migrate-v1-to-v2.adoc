@@ -8,7 +8,7 @@ The environment variables and CLI flags removed in v2, together with the v1 beha
 
 === Configuration names changed
 
-In v2, environment variables use the `NEO4J_MCP_` prefix to scope them to Neo4j MCP.
+In v2, environment variables use the `NEO4J_MCP_` prefix instead of `NEO4J_` to scope them to Neo4j MCP.
 CLI flags are unscoped and use short names without the `--neo4j-` prefix.
 Use these v2 names in every server configuration and client definition.
 When both are set for the same option, the CLI flag takes precedence over the environment variable.
@@ -155,7 +155,12 @@ Trailing slashes are tolerated.
 The `/mcp` path no longer exists and returns `404`.
 Non-`POST` and non-`OPTIONS` methods return `405`.
 Invalid database names return `400`.
+Note that:
 
+* Trailing slashes are tolerated.
+* The `/mcp` path no longer exists and returns `404`.
+* Non-`POST` and non-`OPTIONS` methods return `405`.
+* Invalid database names return `400`.
 For example, change an HTTP client configuration from:
 
 [source,json]
@@ -182,10 +187,10 @@ In v1, an HTTP server could be configured with a single URI and database at star
 In v2, HTTP mode selects the Neo4j instance and database for each request.
 
 Do not set `NEO4J_MCP_URI`, `NEO4J_MCP_USERNAME`, `NEO4J_MCP_PASSWORD`, or `NEO4J_MCP_DATABASE` in HTTP mode.
-The server refuses to start if these options are set and reports that the URI and credentials must be provided per request, while the database is selected by the URL path.
+The server refuses to start if these environmental variables are set and reports that the URI and credentials must be provided per request, while the database is selected by the URL path.
 
 Every request must include the `X-Neo4j-MCP-URI` header.
-Credentials must be supplied per request using Basic authentication or a Bearer token.
+Credentials must be supplied per request using basic authentication or a bearer token.
 The database is selected by the URL path, not by an HTTP header.
 See xref:http-mode.adoc[] for the complete HTTP request reference.
 
@@ -227,7 +232,7 @@ In v1, connectivity, query execution, and APOC checks ran when the server starte
 In v2, the server starts without running these checks.
 They run when the MCP `initialize` request is processed instead, so a failure is reported by `initialize` rather than preventing the server from starting.
 The `initialize` request fails with a descriptive error if the database is unreachable, the configuration is invalid, or APOC is missing.
-APOC must be installed and include the `meta` component.
+APOC must be installed and must include the `meta` component.
 
 GDS detection no longer changes which tools are enabled.
 The `list-gds-procedures` tool is controlled by the configured tool set.

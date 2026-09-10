@@ -66,7 +66,7 @@ The header name can be changed with `NEO4J_MCP_HTTP_AUTH_HEADER_NAME` or `--http
 See xref:authentication.adoc[] for authentication details.
 
 If the authentication header is missing, the server returns `401`.
-Authentication can be selectively bypassed for `ping` and `tools/list` with the server options documented in xref:configuration.adoc#_http_configuration[HTTP configuration].
+You can selectively bypass authentication for `ping` and `tools/list` with the server options documented in xref:configuration.adoc#_http_configuration[HTTP configuration].
 
 == Optional request headers
 
@@ -87,7 +87,7 @@ When `true`, the request can use only the read-only tools in the configured set 
 Set this header to a comma-separated list of tool names.
 
 Only tools from the server's configured set are advertised.
-Naming a valid tool that was excluded at startup advertises nothing; calling it fails with a tool-not-found error.
+Naming a valid tool that was excluded at startup advertises nothing; calling it fails with a "tool not found" error.
 
 When both headers are present, both apply.
 On `tools/call`, the read-only guard runs first: a call that violates both filters returns the dedicated read-only guard error.
