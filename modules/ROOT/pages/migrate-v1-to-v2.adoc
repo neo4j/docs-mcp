@@ -151,10 +151,6 @@ For example, the URL for the `neo4j` database is:
 POST https://example.com/db/neo4j/mcp
 ----
 
-Trailing slashes are tolerated.
-The `/mcp` path no longer exists and returns `404`.
-Non-`POST` and non-`OPTIONS` methods return `405`.
-Invalid database names return `400`.
 Note that:
 
 * Trailing slashes are tolerated.
