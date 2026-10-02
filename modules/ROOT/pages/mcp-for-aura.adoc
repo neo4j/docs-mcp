@@ -14,7 +14,8 @@ Support for Virtual Dedicated Cloud (VDC) instances is coming later.
 
 MCP for Aura requires *Tool authentication* to be enabled in the Aura console.
 
-. In the Aura console, select *Security* from the left-side navigation.
+. In the Aura console, access your organization from the top bar.
+. Select *Security* from the left-side navigation.
 . In *Tool authentication with Aura user*, enable tool authentication:
 +
 .Tool authentication (seamless) setting
