@@ -9,6 +9,18 @@ MCP for Aura is available for Free, Professional, and Business Critical tier ins
 Support for Virtual Dedicated Cloud (VDC) instances is coming later.
 ====
 
+[#enable-tool-authentication]
+== Enable tool authentication
+
+MCP for Aura requires *Tool authentication* to be enabled in the Aura console.
+
+. In the Aura console, access your organization from the top bar.
+. Select *Security* from the left-side navigation.
+. In *Tool authentication with Aura user*, enable tool authentication:
++
+.Tool authentication (seamless) setting
+image::tool-authentication.png[Tool authentication setting]
+
 [#find-your-mcp-server-url]
 == Find your MCP server URL
 
