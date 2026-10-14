@@ -34,7 +34,7 @@ A connected client can:
 === Optional requirements
 
 The Graph Data Science (GDS) library is optional.
-See xref:requirement-checks.adoc#gds-requirement[GDS requirement] for details.
+See xref:tools.adoc#gds-requirement[GDS requirement] for details.
 
 
 == Examples for natural language prompts
