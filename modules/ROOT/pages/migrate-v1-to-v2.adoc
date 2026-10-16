@@ -222,12 +222,12 @@ For example:
 }
 ----
 
-=== Requirement checks run at initialize
+=== Requirement checks run at the MCP handshake
 
 In v1, connectivity, query execution, and APOC checks ran when the server started.
 In v2, the server starts without running these checks.
-They run when the MCP `initialize` request is processed instead, so a failure is reported by `initialize` rather than preventing the server from starting.
-The `initialize` request fails with a descriptive error if the database is unreachable, the configuration is invalid, or APOC is missing.
+They run when the MCP handshake request (`initialize` or `server/discover`) is processed instead, so a failure is reported by that request rather than preventing the server from starting.
+The handshake request fails with a descriptive error if the database is unreachable, the configuration is invalid, or APOC is missing.
 APOC must be installed and must include the `meta` component.
 
 GDS detection no longer changes which tools are enabled.
@@ -245,7 +245,7 @@ See xref:tools.adoc#_tool_filtering[Tool filtering].
 
 === Request timeout
 
-MCP requests, including tool calls and `initialize`, now have a timeout.
+MCP requests, including tool calls and the handshake, now have a timeout.
 Configure the server limit with `NEO4J_MCP_REQUEST_TIMEOUT` or `--request-timeout`.
 HTTP clients can set `X-Neo4j-MCP-Request-Timeout` to use a lower limit for one request.
 See xref:configuration.adoc#request-timeout[Request timeout] and xref:http-mode.adoc[].

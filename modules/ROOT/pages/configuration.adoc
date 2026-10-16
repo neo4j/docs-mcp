@@ -18,7 +18,7 @@ Set the transport mode using `NEO4J_MCP_TRANSPORT_MODE` or `--transport-mode`.
 
 STDIO mode requires `NEO4J_MCP_URI`, `NEO4J_MCP_USERNAME`, `NEO4J_MCP_PASSWORD`, and `NEO4J_MCP_DATABASE` (or their CLI equivalents).
 Provide the database explicitly with `NEO4J_MCP_DATABASE` or `--database`.
-Connectivity, query execution, and APOC requirements are checked when the MCP `initialize` request is processed.
+Connectivity, query execution, and APOC requirements are checked when the MCP handshake request (`initialize` or `server/discover`) is processed.
 
 === HTTP mode
 
@@ -49,7 +49,7 @@ The following environment variables and equivalent command-line flags are genera
 [[request-timeout]]
 == Request timeout
 
-MCP requests, including tool calls and `initialize`, are bounded by the configured timeout.
+MCP requests, including tool calls and the handshake, are bounded by the configured timeout.
 Set `NEO4J_MCP_REQUEST_TIMEOUT` or `--request-timeout` as a number followed by a time unit:
 
 * `ms` for milliseconds, for example `500ms`

@@ -59,6 +59,14 @@ If the header is missing, the server returns `400`.
 The header is included in CORS `Access-Control-Allow-Headers`.
 Passwords in Bolt URIs are redacted from error messages.
 
+=== `Accept` and `Content-Type`
+
+Set `Content-Type` to `application/json`.
+Set `Accept` to include both `application/json` and `text/event-stream`.
+Requests that omit either media type are rejected with `400`, as required by the official Go MCP SDK.
+Standard MCP clients send these headers automatically.
+Add them yourself when you call the endpoint with a tool such as `curl`.
+
 === Authentication
 
 Supply credentials with basic authentication or a bearer token in the `Authorization` header.
@@ -109,6 +117,7 @@ The following request selects the `neo4j` database and a Neo4j instance for the 
 POST /db/neo4j/mcp HTTP/1.1
 Host: localhost
 Content-Type: application/json
+Accept: application/json, text/event-stream
 X-Neo4j-MCP-URI: bolt://localhost:7687
 Authorization: Basic BASE64_ENCODED_CREDENTIALS
 X-Neo4j-MCP-ReadOnly: true
@@ -125,7 +134,7 @@ X-Neo4j-MCP-Request-Timeout: 45s
 | Status | Condition
 
 | `400`
-| Invalid database name, missing or invalid `X-Neo4j-MCP-URI`, invalid or duplicated filtering or timeout header, or invalid request configuration.
+| Invalid database name, missing or invalid `X-Neo4j-MCP-URI`, invalid or duplicated filtering or timeout header, invalid request configuration, or an `Accept` header that does not include both `application/json` and `text/event-stream`.
 
 | `401`
 | Authentication is missing or invalid, unless authentication has been explicitly disabled for the applicable request type.
@@ -137,5 +146,5 @@ X-Neo4j-MCP-Request-Timeout: 45s
 | The HTTP method is not `POST` or `OPTIONS`.
 |===
 
-Requirement checks for connectivity, query execution, and APOC run when the MCP `initialize` request is processed.
+Requirement checks for connectivity, query execution, and APOC run when the MCP handshake request (`initialize` or `server/discover`) is processed.
 See xref:requirement-checks.adoc[].
