@@ -31,13 +31,7 @@ See xref:client-configuration.adoc[] for other client-specific configuration.
 
 == Self hosted
 
-=== Installation
-
 Install `uv` to make `uvx` available on your PATH.
-
-For a more comprehensive installation guide, see xref:installation.adoc[].
-
-=== Configuration
 
 Add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`:
 
