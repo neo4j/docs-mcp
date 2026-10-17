@@ -31,7 +31,7 @@ See xref:client-configuration.adoc[] for other client-specific configuration.
 
 == Self hosted
 
-Install `uv` to make `uvx` available on your PATH.
+Install link:https://docs.astral.sh/uv/getting-started/installation/[uv] to make `uvx` available on your PATH.
 
 Add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`:
 
