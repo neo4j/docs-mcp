@@ -1,7 +1,3 @@
-This requires the Neo4j MCP server to have been installed using PyPI. See xref:installation.adoc#_install_with_pypi[Install with PyPI].
-
-[NOTE]
-======
-On some systems the Python 3 interpreter is named `python3` instead of `python`.
-Use whichever is available in your environment.
-======
+This configuration uses `uvx` to download and run the Neo4j MCP server from PyPI automatically, with no separate server installation step.
+It requires `uv` to be installed and `uvx` to be available on your PATH.
+See xref:installation.adoc#_install_with_pypi[Run from PyPI with uvx].
