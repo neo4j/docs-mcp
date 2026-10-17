@@ -31,11 +31,15 @@ See xref:client-configuration.adoc[] for other client-specific configuration.
 
 == Self hosted
 
-Install `uv` if it is not already available on your system.
-See link:https://docs.astral.sh/uv/getting-started/installation/[Installing uv] for instructions.
+=== Installation
 
-Add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`.
-The client uses `uvx` to download and run the server from PyPI automatically, with no separate server installation step.
+Install `uv` to make `uvx` available on your PATH.
+
+For a more comprehensive installation guide, see xref:installation.adoc[].
+
+=== Configuration
+
+Add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`:
 
 ```json
 {

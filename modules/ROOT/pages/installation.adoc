@@ -2,21 +2,11 @@
 = Installation
 :description: This section describes the installation of Neo4j MCP.
 
-[[_install_with_pypi]]
-== Run from PyPI with uvx
-
-Install `uv` if it is not already available on your system.
-See link:https://docs.astral.sh/uv/getting-started/installation/[Installing uv] for instructions.
-
-Use `uvx` to download and run the server from PyPI in one step:
-
+== Install with PyPI
 [source, bash]
 ----
 uvx neo4j-mcp-server
 ----
-
-For MCP clients, set `uvx` as the command and `neo4j-mcp-server` as its argument.
-See xref:client-configuration.adoc[] for complete examples, including database connection settings.
 
 == Install with Homebrew
 [source, bash]
