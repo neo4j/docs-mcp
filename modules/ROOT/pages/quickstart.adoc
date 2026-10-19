@@ -2,6 +2,9 @@
 
 == MCP for Aura
 
+Before connecting, enable *Tool authentication* in *Security* for your organization in the Aura console.
+See xref:mcp-for-aura.adoc#enable-tool-authentication[Enable tool authentication] for details.
+
 First, retrieve your instance's MCP server URL:
 
 . Under **Instances** in the left side navigation of the Aura Console, retrieve the ID of the Aura instance you would like to use with Neo4j MCP.
