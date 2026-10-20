@@ -149,28 +149,24 @@ Then configure your MCP client to send the custom header, for example in `mcp.js
 == Unauthenticated endpoints
 
 By default, all HTTP requests require valid credentials.
-Two options let you selectively bypass authentication for specific request types that some platforms issue before the MCP session is established.
+One option lets you bypass authentication for the `ping` request that some platforms issue before the MCP session is established.
 
 *NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING (--http-allow-unauthenticated-ping, default=false)*:
 Allows JSON-RPC `ping` requests through without credentials.
 The MCP spec permits pings before initialization; platforms such as AWS AgentCore Runtime use them as liveness/health checks.
 
-*NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST (--http-allow-unauthenticated-tools-list, default=false)*:
-Allows `tools/list` requests through without credentials.
-Useful for discovery endpoints that enumerate available tools before authenticating.
-
 [source, bash]
 ----
 export NEO4J_MCP_TRANSPORT_MODE="http"
 export NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING="true"
-export NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST="true"
 neo4j-mcp
 ----
 
 [WARNING]
 ====
-Enable these only when the deployment platform requires them.
-Unauthenticated `tools/list` exposes the list of available tools to any caller without credentials.
+Enable this only when the deployment platform requires it.
+
+`tools/list` always requires authentication.
 ====
 
 == Troubleshooting authentication
@@ -213,7 +209,7 @@ Unauthenticated `tools/list` exposes the list of available tools to any caller w
 
 *No authentication header provided*
 
-- HTTP mode requires authentication on every request unless `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING` or `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST` are enabled for specific request types
+- HTTP mode requires authentication on every request except `ping` when `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING` is enabled
 - Ensure your MCP client configuration includes the correct authentication header (default: `Authorization`; or the custom header if `NEO4J_MCP_HTTP_AUTH_HEADER_NAME` is set)
 
 *Connection refused / Cannot reach server*
