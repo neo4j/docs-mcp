@@ -59,14 +59,6 @@ If the header is missing, the server returns `400`.
 The header is included in CORS `Access-Control-Allow-Headers`.
 Passwords in Bolt URIs are redacted from error messages.
 
-=== `Accept` and `Content-Type`
-
-Set `Content-Type` to `application/json`.
-Set `Accept` to include both `application/json` and `text/event-stream`.
-Requests that omit either media type are rejected with `400`, as required by the official Go MCP SDK.
-Standard MCP clients send these headers automatically.
-Add them yourself when you call the endpoint with a tool such as `curl`.
-
 === Authentication
 
 Supply credentials with basic authentication or a bearer token in the `Authorization` header.
