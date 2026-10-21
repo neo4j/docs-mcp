@@ -8,7 +8,7 @@ Provided tools:
 | `get-schema`         | Yes      | Introspect labels, relationship types, property keys | Provide valuable context to the client LLMs.
 | `read-cypher`        | Yes      | Execute arbitrary Cypher (read mode)           | Rejects writes, schema/admin operations, and PROFILE queries.
 | `write-cypher`       | No       | Execute arbitrary Cypher (write mode)          | Caution: LLM-generated queries can cause harm. Use only in development environments. Not exposed when readonly mode is enabled.
-| `list-gds-procedures` | Yes     | List GDS procedures available in the instance  | Enabled by default; GDS is checked when this tool is enabled for a request.
+| `list-gds-procedures` | Yes     | List GDS procedures available in the instance  | Enabled by default. Requires GDS; see <<gds-requirement>>.
 |===
 
 == Readonly mode
@@ -56,7 +56,6 @@ With `NEO4J_MCP_READ_ONLY=true`, write-capable tools stay disabled even when lis
 
 See xref:http-mode.adoc#_optional_request_headers[Optional request headers] for header syntax, validation, and error behavior.
 
-
 == Query classification
 
 Read-only tools, such as `read-cypher`, perform an extra round-trip to the Neo4j database to guarantee read-only operations.
@@ -65,3 +64,10 @@ Read-only tools, such as `read-cypher`, perform an extra round-trip to the Neo4j
 - **Admin queries**: Commands like `SHOW USERS`, `SHOW DATABASES`, etc., are treated as non-read queries and must use a write-capable tool, such as `write-cypher`.
 - **Profile queries**: `EXPLAIN PROFILE` queries are treated as non-read queries, even if the underlying statement is read-only.
 - **Schema operations**: `CREATE INDEX`, `DROP CONSTRAINT`, etc., are treated as non-read queries.
+
+[[gds-requirement]]
+== GDS requirement
+
+The Graph Data Science (GDS) library is optional and checked on `tools/list`.
+If GDS is not found and no tools have been explicitly requested, the `list-gds-procedures` tool is omitted from the tool list and the other tools remain available.
+If `list-gds-procedures` is explicitly requested (via `NEO4J_MCP_TOOLS` or the `X-Neo4j-MCP-Tools` header) and GDS is not found, `tools/list` returns an error.

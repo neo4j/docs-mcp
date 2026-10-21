@@ -230,10 +230,10 @@ They run when the MCP handshake request (`initialize` or `server/discover`) is p
 The handshake request fails with a descriptive error if the database is unreachable, the configuration is invalid, or APOC is missing.
 APOC must be installed and must include the `meta` component.
 
-GDS detection no longer changes which tools are enabled.
-The `list-gds-procedures` tool is controlled by the configured tool set.
-If the tool is enabled and GDS is not found, the server logs a message and continues; the GDS tool does not work, but the other tools remain available.
-See xref:requirement-checks.adoc[].
+GDS is now checked on `tools/list` instead of at startup.
+If `list-gds-procedures` is enabled by default and GDS is not found, the tool is omitted from the tool list.
+If the tool is explicitly requested and GDS is not found, `tools/list` returns an error.
+See xref:requirement-checks.adoc[] and xref:tools.adoc#gds-requirement[GDS requirement].
 
 == Additions
 
