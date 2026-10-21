@@ -66,7 +66,7 @@ The header name can be changed with `NEO4J_MCP_HTTP_AUTH_HEADER_NAME` or `--http
 See xref:authentication.adoc[] for authentication details.
 
 If the authentication header is missing, the server returns `401`.
-You can selectively bypass authentication for `ping` and `tools/list` with the server options documented in xref:configuration.adoc#_http_configuration[HTTP configuration].
+You can selectively bypass authentication for `ping` with the server option documented in xref:configuration.adoc#_http_configuration[HTTP configuration].
 
 == Optional request headers
 

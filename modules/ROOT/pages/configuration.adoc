@@ -84,7 +84,6 @@ Additional environment variables and equivalent command-line flags for HTTP mode
 | `NEO4J_MCP_HTTP_ALLOWED_ORIGINS` | `--http-allowed-origins` | CORS configuration (comma-separated list, `*` for all, empty to disable) | _empty (disabled)_
 | `NEO4J_MCP_HTTP_AUTH_HEADER_NAME` | `--http-auth-header-name` | Header used for per-request credentials (see xref:authentication.adoc#_custom_auth_header_name[Custom auth header name]) | `Authorization`
 | `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING` | `--http-allow-unauthenticated-ping` | Allow JSON-RPC `ping` without credentials (see xref:authentication.adoc#_unauthenticated_endpoints[Unauthenticated endpoints]) | `false`
-| `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST` | `--http-allow-unauthenticated-tools-list` | Allow `tools/list` without credentials (see xref:authentication.adoc#_unauthenticated_endpoints[Unauthenticated endpoints]) | `false`
 |===
 
 ==== TLS/HTTPS configuration

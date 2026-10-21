@@ -57,9 +57,6 @@ When both are set for the same option, the CLI flag takes precedence over the en
 
 | `NEO4J_HTTP_ALLOW_UNAUTHENTICATED_PING`
 | `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING`
-
-| `NEO4J_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST`
-| `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST`
 |===
 
 ==== Unscoped CLI flags
@@ -119,12 +116,29 @@ When both are set for the same option, the CLI flag takes precedence over the en
 | `--neo4j-http-allow-unauthenticated-ping`
 | `--http-allow-unauthenticated-ping`
 
-| `--neo4j-http-allow-unauthenticated-tools-list`
-| `--http-allow-unauthenticated-tools-list`
-
 | `--neo4j-request-timeout`
 | `--request-timeout`
 |===
+
+=== Unauthenticated `tools/list` removed
+
+In HTTP mode, `tools/list` now always requires authentication.
+The server verifies GDS availability with a database round-trip when listing tools, so credentials are needed.
+
+The following options no longer exist:
+
+[cols="2,2", options="header"]
+|===
+| Type | Removed
+
+| Environment variable
+| `NEO4J_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST` and `NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_TOOLS_LIST`
+
+| CLI flag
+| `--neo4j-http-allow-unauthenticated-tools-list` and `--http-allow-unauthenticated-tools-list`
+|===
+
+Unauthenticated `ping` (`NEO4J_MCP_HTTP_ALLOW_UNAUTHENTICATED_PING`) is unaffected.
 
 === HTTP endpoint includes the database
 
