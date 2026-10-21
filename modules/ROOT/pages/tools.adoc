@@ -69,5 +69,5 @@ Read-only tools, such as `read-cypher`, perform an extra round-trip to the Neo4j
 == GDS requirement
 
 The Graph Data Science (GDS) library is optional and checked on `tools/list`.
-If GDS is not found and `list-gds-procedures` is enabled by default, the tool is omitted from the tool list and the other tools remain available.
+If GDS is not found and no tools have been explicitly requested, the `list-gds-procedures` tool is omitted from the tool list and the other tools remain available.
 If `list-gds-procedures` is explicitly requested (via `NEO4J_MCP_TOOLS` or the `X-Neo4j-MCP-Tools` header) and GDS is not found, `tools/list` returns an error.
