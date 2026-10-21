@@ -31,31 +31,17 @@ See xref:client-configuration.adoc[] for other client-specific configuration.
 
 == Self hosted
 
-=== Installation
-
-```bash
-pip install neo4j-mcp-server
-```
-
-For a more comprehensive installation guide, see xref:installation.adoc[].
-
-=== Configuration
+Install link:https://docs.astral.sh/uv/getting-started/installation/[uv] to make `uvx` available on your PATH.
 
 Add Neo4j MCP to your client's MCP configuration. For example, in VS Code, create or edit `mcp.json`:
-
-[NOTE]
-====
-On some systems the Python 3 interpreter is named `python3` instead of `python`
-Use whichever is available in your environment.
-====
 
 ```json
 {
   "servers": {
     "neo4j": {
       "type": "stdio",
-      "command": "python",
-      "args": ["-m", "neo4j_mcp_server"],
+      "command": "uvx",
+      "args": ["neo4j-mcp-server"],
       "env": {
         "NEO4J_MCP_URI": "bolt://localhost:7687",
         "NEO4J_MCP_USERNAME": "neo4j",

@@ -111,8 +111,8 @@ include::partial$note-stdio-pypi.adoc[]
   "servers": {
     "neo4j-mcp": {
       "type": "stdio",
-      "command": "python",
-      "args": ["-m", "neo4j_mcp_server"],
+      "command": "uvx",
+      "args": ["neo4j-mcp-server"],
       "env": {
         "NEO4J_MCP_URI": "bolt://localhost:7687",
         "NEO4J_MCP_USERNAME": "neo4j",
@@ -192,8 +192,8 @@ include::partial$note-stdio-pypi.adoc[]
 {
   "mcpServers": {
     "neo4j-mcp": {
-      "command": "python",
-      "args": ["-m", "neo4j_mcp_server"],
+      "command": "uvx",
+      "args": ["neo4j-mcp-server"],
       "env": {
         "NEO4J_MCP_URI": "bolt://localhost:7687",
         "NEO4J_MCP_USERNAME": "neo4j",
@@ -291,8 +291,8 @@ include::partial$note-stdio-pypi.adoc[]
   "mcpServers": {
     "neo4j-mcp": {
       "type": "stdio",
-      "command": "python",
-      "args": ["-m", "neo4j_mcp_server"],
+      "command": "uvx",
+      "args": ["neo4j-mcp-server"],
       "env": {
         "NEO4J_MCP_URI": "bolt://localhost:7687",
         "NEO4J_MCP_USERNAME": "neo4j",
