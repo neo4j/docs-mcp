@@ -1,8 +1,7 @@
 [[configuration]]
 = Configuration reference
 
-`neo4j-mcp` requires explicit configuration to connect to your Neo4j instance.
-Configuration can be provided through environment variables or command-line flags.
+`neo4j-mcp` can be configured with environment variables or command-line flags.
 When both are set for the same option, the command-line flag takes precedence over the environment variable.
 
 
@@ -11,9 +10,9 @@ When both are set for the same option, the command-line flag takes precedence ov
 
 The server supports two transport modes:
 
-- **STDIO** (default): Traditional standard input/output mode for desktop clients
-- **HTTP**: Web-based mode for multi-tenant scenarios and web clients
+* **STDIO** (default): Standard input/output mode for desktop clients.
+* **HTTP**: Stateless, multi-tenant mode for web clients and shared deployments.
 
-Set the transport mode using the `NEO4J_TRANSPORT_MODE` environment variable or `--neo4j-transport-mode` flag.
+Set the transport mode using `NEO4J_MCP_TRANSPORT_MODE` or `--transport-mode`.
 
 See xref:stdio-configuration.adoc[] and xref:http-configuration.adoc[] for details.

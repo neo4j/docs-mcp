@@ -16,7 +16,7 @@ The following log levels are supported, as defined by the MCP specification (fro
 - `alert` - Action must be taken immediately
 - `emergency` - System is unusable
 
-Set the log level using the `NEO4J_LOG_LEVEL` environment variable.
+Set the log level using the `NEO4J_MCP_LOG_LEVEL` environment variable.
 The log level is set at startup and remains fixed for the lifetime of the server process.
 
 == Log formats
@@ -26,7 +26,7 @@ Two output formats are available:
 - `text` (default) - Human-readable text format
 - `json` - Structured JSON format for log parsing and analysis
 
-Set the log format using the `NEO4J_LOG_FORMAT` environment variable.
+Set the log format using the `NEO4J_MCP_LOG_FORMAT` environment variable.
 
 == Security features
 
@@ -49,9 +49,9 @@ Enable debug logging with text output:
     "neo4j-mcp": {
       "command": "neo4j-mcp",
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_LOG_LEVEL": "debug",
-        "NEO4J_LOG_FORMAT": "text"
+        "NEO4J_MCP_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_LOG_LEVEL": "debug",
+        "NEO4J_MCP_LOG_FORMAT": "text"
       }
     }
   }
@@ -67,9 +67,9 @@ Enable JSON logging for automated parsing:
     "neo4j-mcp": {
       "command": "neo4j-mcp",
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_LOG_LEVEL": "info",
-        "NEO4J_LOG_FORMAT": "json"
+        "NEO4J_MCP_URI": "bolt://localhost:7687",
+        "NEO4J_MCP_LOG_LEVEL": "info",
+        "NEO4J_MCP_LOG_FORMAT": "json"
       }
     }
   }

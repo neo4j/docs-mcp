@@ -5,7 +5,7 @@
 == Install with PyPI
 [source, bash]
 ----
-pip install neo4j-mcp-server
+uvx neo4j-mcp-server
 ----
 
 == Install with Homebrew
