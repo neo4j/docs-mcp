@@ -13,6 +13,8 @@
 * xref:authentication.adoc[]
 * xref:http-mode.adoc[]
 * xref:configuration.adoc[]
+** xref:stdio-configuration.adoc[]
+** xref:http-configuration.adoc[]
 * xref:requirement-checks.adoc[]
 
 * *Monitoring*

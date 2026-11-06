@@ -262,4 +262,4 @@ See xref:tools.adoc#_tool_filtering[Tool filtering].
 MCP requests, including tool calls and the handshake, now have a timeout.
 Configure the server limit with `NEO4J_MCP_REQUEST_TIMEOUT` or `--request-timeout`.
 HTTP clients can set `X-Neo4j-MCP-Request-Timeout` to use a lower limit for one request.
-See xref:configuration.adoc#request-timeout[Request timeout] and xref:http-mode.adoc[].
+See xref:http-configuration.adoc#request-timeout[Request timeout] and xref:http-mode.adoc[].

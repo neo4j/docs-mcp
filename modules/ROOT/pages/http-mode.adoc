@@ -66,7 +66,7 @@ The header name can be changed with `NEO4J_MCP_HTTP_AUTH_HEADER_NAME` or `--http
 See xref:authentication.adoc[] for authentication details.
 
 If the authentication header is missing, the server returns `401`.
-You can selectively bypass authentication for `ping` with the server option documented in xref:configuration.adoc#_http_configuration[HTTP configuration].
+You can selectively bypass authentication for `ping` with the server option documented in xref:http-configuration.adoc[HTTP configuration].
 
 == Optional request headers
 
@@ -98,7 +98,7 @@ On `tools/call`, the read-only guard runs first: a call that violates both filte
 Set this header to a duration such as `45s`, `5m`, or `1m30s` to apply a lower timeout limit to one request.
 The value must not exceed the server limit configured by `NEO4J_MCP_REQUEST_TIMEOUT` or `--request-timeout`.
 Values above the server limit, non-positive values, malformed values, or duplicated headers return `400`.
-See xref:configuration.adoc#request-timeout[Request timeout].
+See xref:http-configuration.adoc#request-timeout[Request timeout].
 
 == Example request
 
