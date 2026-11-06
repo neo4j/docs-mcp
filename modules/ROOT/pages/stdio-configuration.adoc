@@ -47,5 +47,4 @@ Set `NEO4J_MCP_REQUEST_TIMEOUT` or `--request-timeout` as a number followed by a
 
 You can combine units, for example `1m30s`.
 The default is `3m` and the maximum is `30m`.
-HTTP clients can use `X-Neo4j-MCP-Request-Timeout` to set a lower limit for an individual request.
 See xref:http-mode.adoc#request-timeout-header[`X-Neo4j-MCP-Request-Timeout`].
